@@ -103,6 +103,18 @@ export default {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
         },
+        blink: {
+          '0%, 92%, 100%': { transform: 'scaleY(1)' },
+          '96%': { transform: 'scaleY(0.12)' },
+        },
+        talk: {
+          '0%, 100%': { transform: 'scaleY(0.55)' },
+          '50%': { transform: 'scaleY(1.25)' },
+        },
+        'bar-rise': {
+          '0%': { transform: 'scaleY(0)' },
+          '100%': { transform: 'scaleY(1)' },
+        },
       },
       animation: {
         'page-in': 'page-in 380ms cubic-bezier(0.22,1,0.36,1) both',
@@ -118,6 +130,9 @@ export default {
         'dot-bounce': 'dot-bounce 1.2s ease-in-out infinite',
         'ring-ping': 'ring-ping 2s cubic-bezier(0.16,1,0.3,1) infinite',
         'gradient-pan': 'gradient-pan 8s ease infinite',
+        blink: 'blink 5.5s ease-in-out infinite',
+        talk: 'talk 420ms ease-in-out infinite',
+        'bar-rise': 'bar-rise 700ms cubic-bezier(0.22,1,0.36,1) both',
       },
     },
   },
