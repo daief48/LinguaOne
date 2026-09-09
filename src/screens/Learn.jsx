@@ -103,7 +103,7 @@ export default function Learn() {
       </div>
 
       {/* section summary */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <div className={`flex items-center gap-3 rounded-3xl border p-3.5 ${t.softBorder} ${t.soft}`}>
           <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br text-white ${t.grad} ${t.glow}`}>
             <Icon name={active.icon} size={19} strokeWidth={2.3} />
@@ -123,7 +123,7 @@ export default function Learn() {
       </div>
 
       {/* course path */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <SectionHeader title="Course path" subtitle="Complete a lesson to unlock the next" />
         <div key={section} className="space-y-2.5 animate-fade-in">
           {lessons.map((lesson, i) => (
@@ -144,7 +144,7 @@ export default function Learn() {
       </div>
 
       {/* end of path */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <div className="flex items-center gap-3 rounded-3xl border border-dashed border-ink-200 bg-white/70 p-3.5">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-amber-50 text-amber-500">
             <Trophy size={18} strokeWidth={2.4} />
@@ -158,7 +158,7 @@ export default function Learn() {
       </div>
 
       {/* recap */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <div className="surface p-4">
           <div className="mb-3 flex items-center gap-2">
             <Sparkles size={15} className="text-violet-500" strokeWidth={2.5} />

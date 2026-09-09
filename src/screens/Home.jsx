@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { Screen } from '../components/layout/Screen'
+import { Reveal } from '../components/layout/Reveal'
 import { SectionHeader } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
 import { Flag } from '../components/ui/Flag'
@@ -104,17 +105,17 @@ export default function Home() {
       </div>
 
       {/* ---------------- streak + goal ---------------- */}
-      <div className="mt-4 px-4">
+      <Reveal className="mt-4 px-4">
         <StreakCard
           streak={user.streak}
           minutes={minutesToday}
           goal={dailyGoal}
-          onClick={() => showToast(`${dailyGoal - minutesToday} minutes left today`, { variant: 'default' })}
+          onClick={() => showToast(`${dailyGoal - minutesToday} minutes left today`, { variant: "default" })}
         />
-      </div>
+      </Reveal>
 
       {/* ---------------- continue learning hero ---------------- */}
-      <div className="mt-4 px-4">
+      <Reveal className="mt-4 px-4" delay={60}>
         <div className="relative overflow-hidden rounded-4xl border border-ink-100 bg-white shadow-card">
           <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 px-4 pb-14 pt-4 text-white">
             <div className="pointer-events-none absolute inset-0 opacity-20 grid-dots" />
@@ -162,10 +163,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
 
       {/* ---------------- daily AI practice ---------------- */}
-      <div className="mt-4 px-4">
+      <Reveal className="mt-4 px-4">
         <div className="relative overflow-hidden rounded-4xl border border-violet-100 bg-gradient-to-br from-violet-50 via-white to-cyan-50/70 p-4 shadow-soft">
           <div className="pointer-events-none absolute -right-10 -bottom-12 h-32 w-32 rounded-full bg-cyan-200/40 blur-2xl" />
 
@@ -195,29 +196,20 @@ export default function Home() {
             Start Conversation
           </Button>
         </div>
-      </div>
+      </Reveal>
 
       {/* ---------------- quick practice ---------------- */}
-      <div className="mt-6 px-4">
+      <Reveal className="mt-6 px-4">
         <SectionHeader title="Quick Practice" subtitle="Short drills, big gains" action="See all" actionTo="/practice" />
-        <div className="grid grid-cols-2 gap-3">
-          {quickPractice.map((p, i) => (
-            <ActionTile
-              key={p.id}
-              label={p.label}
-              icon={p.icon}
-              tint={p.tint}
-              meta={p.meta}
-              to={p.to}
-              className="animate-slide-up"
-              style={{ animationDelay: `${i * 60}ms` }}
-            />
+        <div className="stagger grid grid-cols-2 gap-3">
+          {quickPractice.map((p) => (
+            <ActionTile key={p.id} label={p.label} icon={p.icon} tint={p.tint} meta={p.meta} to={p.to} />
           ))}
         </div>
-      </div>
+      </Reveal>
 
       {/* ---------------- AI recommendation ---------------- */}
-      <div className="mt-6 px-4">
+      <Reveal className="mt-6 px-4">
         <AIInsightCard
           eyebrow="AI Recommendation"
           action="Practice Pronunciation"
@@ -226,10 +218,10 @@ export default function Home() {
         >
           Your AI teacher noticed that pronunciation needs more practice.
         </AIInsightCard>
-      </div>
+      </Reveal>
 
       {/* ---------------- today's vocabulary ---------------- */}
-      <div className="mt-6">
+      <Reveal className="mt-6">
         <div className="px-4">
           <SectionHeader
             title="Today’s Vocabulary"
@@ -256,10 +248,10 @@ export default function Home() {
             <span className="text-[12px] font-bold">See all</span>
           </Link>
         </div>
-      </div>
+      </Reveal>
 
       {/* ---------------- learning progress ---------------- */}
-      <div className="mt-5 px-4">
+      <Reveal className="mt-5 px-4">
         <SectionHeader title="Learning Progress" subtitle="This week" action="Details" actionTo="/progress" />
         <div className="surface space-y-3.5 p-4">
           {skillProgress.slice(0, 4).map((s) => (
@@ -280,11 +272,11 @@ export default function Home() {
             <ArrowRight size={14} strokeWidth={2.6} />
           </Link>
         </div>
-      </div>
+      </Reveal>
 
       {/* ---------------- premium strip ---------------- */}
       {!isPremium && (
-        <div className="mt-5 px-4">
+        <Reveal className="mt-5 px-4">
           <Link
             to="/premium"
             className="press group relative flex items-center gap-3 overflow-hidden rounded-4xl bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 p-4 text-white shadow-[0_18px_40px_-18px_rgba(249,115,22,0.9)]"
@@ -301,7 +293,7 @@ export default function Home() {
             </span>
             <ArrowRight size={18} strokeWidth={2.6} className="relative shrink-0 transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
-        </div>
+        </Reveal>
       )}
 
       {/* ---------------- language sheet ---------------- */}

@@ -16,7 +16,7 @@ export default function Ielts() {
   return (
     <div className="flex-1 pb-8">
       {/* hero */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-violet-700 to-indigo-900 pb-16 text-white sm:pt-[30px]">
+      <div className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-violet-700 to-indigo-900 pb-16 text-white sm:pt-[42px]">
         <StatusBar dark className="absolute inset-x-0 top-0" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.18] grid-dots" />
         <div className="pointer-events-none absolute -right-12 -top-10 h-44 w-44 rounded-full bg-violet-400/30 blur-3xl" />
@@ -99,7 +99,7 @@ export default function Ielts() {
       </div>
 
       {/* AI examiner */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <div className="relative overflow-hidden rounded-4xl border border-violet-100 bg-gradient-to-br from-violet-50 via-white to-cyan-50/60 p-4 shadow-soft">
           <div className="pointer-events-none absolute -right-10 -top-12 h-32 w-32 rounded-full bg-violet-200/50 blur-2xl" />
           <div className="relative flex items-start gap-3">
@@ -118,7 +118,7 @@ export default function Ielts() {
       </div>
 
       {/* parts */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <h2 className="title-md mb-3">Speaking sections</h2>
         <div className="space-y-2.5">
           {ielts.parts.map((p, i) => {
@@ -175,7 +175,7 @@ export default function Ielts() {
       </div>
 
       {/* tips */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <div className="surface p-4">
           <div className="flex items-center gap-2">
             <span className="grid h-8 w-8 place-items-center rounded-xl bg-amber-50 text-amber-600">

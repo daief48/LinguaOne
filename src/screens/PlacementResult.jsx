@@ -13,7 +13,7 @@ export default function PlacementResult() {
   return (
     <div className="flex-1 pb-8">
       {/* hero */}
-      <div className="relative overflow-hidden mesh-hero px-5 pb-12 pt-8 text-center text-white sm:pt-[46px]">
+      <div className="relative overflow-hidden mesh-hero px-5 pb-12 pt-8 text-center text-white sm:pt-[56px]">
         <StatusBar dark className="absolute inset-x-0 top-0" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.16] grid-dots" />
         <div className="pointer-events-none absolute -left-12 top-4 h-40 w-40 rounded-full bg-white/15 blur-3xl" />

@@ -21,7 +21,7 @@ export default function Profile() {
   return (
     <Screen padded={false}>
       {/* header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 px-4 pb-14 pt-4 text-white sm:pt-[44px]">
+      <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 px-4 pb-14 pt-4 text-white sm:pt-[58px]">
         <StatusBar dark className="absolute inset-x-0 top-0" />
         <div className="pointer-events-none absolute inset-0 opacity-20 grid-dots" />
         <div className="pointer-events-none absolute -right-12 -top-14 h-44 w-44 rounded-full bg-cyan-300/30 blur-3xl" />
@@ -85,7 +85,7 @@ export default function Profile() {
       </div>
 
       {/* learning setup */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <SectionHeader title="Learning" action="Edit" actionTo="/settings" />
         <div className="surface divide-y divide-ink-100 p-0">
           <div className="flex items-center gap-3 p-3.5">
@@ -126,7 +126,7 @@ export default function Profile() {
       </div>
 
       {/* achievements */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <SectionHeader
           title="Achievements"
           subtitle={`${earned.length} of ${achievements.length} unlocked`}
@@ -164,7 +164,7 @@ export default function Profile() {
       </div>
 
       {/* menu */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <SectionHeader title="Settings" />
         <div className="surface divide-y divide-ink-100 p-0">
           {profileMenu.map((m) => {
@@ -192,7 +192,7 @@ export default function Profile() {
 
       {/* premium banner */}
       {!isPremium && (
-        <div className="mt-5 px-4">
+        <div className="reveal mt-5 px-4">
           <Link
             to="/premium"
             className="press relative flex items-center gap-3 overflow-hidden rounded-4xl bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 p-4 text-white shadow-[0_18px_40px_-18px_rgba(249,115,22,0.9)]"
@@ -211,7 +211,7 @@ export default function Profile() {
       )}
 
       {/* logout */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <button
           type="button"
           onClick={() => showToast('Sign out is disabled in this demo', { variant: 'default' })}

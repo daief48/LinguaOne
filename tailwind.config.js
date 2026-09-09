@@ -115,6 +115,50 @@ export default {
           '0%': { transform: 'scaleY(0)' },
           '100%': { transform: 'scaleY(1)' },
         },
+        /* --- added: richer motion set --- */
+        shine: {
+          '0%': { transform: 'translateX(-130%) skewX(-18deg)' },
+          '60%, 100%': { transform: 'translateX(240%) skewX(-18deg)' },
+        },
+        'pop-in': {
+          '0%': { opacity: '0', transform: 'scale(0.86)' },
+          '62%': { opacity: '1', transform: 'scale(1.03)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        'reveal-up': {
+          '0%': { opacity: '0', transform: 'translateY(22px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        drift: {
+          '0%, 100%': { transform: 'translate3d(0,0,0) scale(1)' },
+          '33%': { transform: 'translate3d(28px,-22px,0) scale(1.06)' },
+          '66%': { transform: 'translate3d(-20px,18px,0) scale(0.96)' },
+        },
+        breathe: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.035)' },
+        },
+        'tab-pop': {
+          '0%': { transform: 'scale(0.8)' },
+          '55%': { transform: 'scale(1.12)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        'sheen-sweep': {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+        'glow-pulse': {
+          '0%, 100%': { opacity: '0.45' },
+          '50%': { opacity: '0.9' },
+        },
+        'orbit-dot': {
+          '0%': { transform: 'rotate(0deg) translateX(var(--orbit,26px)) rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg) translateX(var(--orbit,26px)) rotate(-360deg)' },
+        },
+        'stroke-draw': {
+          '0%': { strokeDashoffset: 'var(--dash, 200)' },
+          '100%': { strokeDashoffset: '0' },
+        },
       },
       animation: {
         'page-in': 'page-in 380ms cubic-bezier(0.22,1,0.36,1) both',
@@ -133,6 +177,17 @@ export default {
         blink: 'blink 5.5s ease-in-out infinite',
         talk: 'talk 420ms ease-in-out infinite',
         'bar-rise': 'bar-rise 700ms cubic-bezier(0.22,1,0.36,1) both',
+        /* --- added --- */
+        shine: 'shine 3.2s cubic-bezier(0.4,0,0.2,1) infinite',
+        'pop-in': 'pop-in 460ms cubic-bezier(0.34,1.56,0.64,1) both',
+        'reveal-up': 'reveal-up 620ms cubic-bezier(0.22,1,0.36,1) both',
+        drift: 'drift 18s ease-in-out infinite',
+        'drift-slow': 'drift 26s ease-in-out infinite',
+        breathe: 'breathe 4.5s ease-in-out infinite',
+        'tab-pop': 'tab-pop 380ms cubic-bezier(0.34,1.56,0.64,1)',
+        'sheen-sweep': 'sheen-sweep 4s linear infinite',
+        'glow-pulse': 'glow-pulse 3.4s ease-in-out infinite',
+        'orbit-dot': 'orbit-dot 9s linear infinite',
       },
     },
   },

@@ -30,7 +30,7 @@ export default function Premium() {
   return (
     <div className="flex flex-1 flex-col bg-ink-900 pb-8">
       {/* hero */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-[#1B1440] to-[#2B1B5A] px-5 pb-10 pt-3 text-white sm:pt-[42px]">
+      <div className="relative overflow-hidden bg-gradient-to-br from-ink-900 via-[#1B1440] to-[#2B1B5A] px-5 pb-10 pt-3 text-white sm:pt-[54px]">
         <StatusBar dark className="absolute inset-x-0 top-0" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.18] grid-dots" />
         <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-violet-500/35 blur-3xl" />

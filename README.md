@@ -4,7 +4,9 @@
 
 A responsive React prototype of an AI-powered multi-language learning platform,
 built as a **mobile-app-style product demo**. On desktop it presents inside a
-centered phone frame; on a phone it runs full-screen like a native app.
+centered **Google Pixel** mockup — hole-punch camera, side buttons, Android
+gesture bar — and on a phone it drops the frame and runs full-screen like a
+native app.
 
 This is a **client presentation demo**: all data is local mock data. There is no
 backend, no authentication, no AI API and no payment integration — the AI
@@ -110,7 +112,8 @@ src/
   hooks/
     useAnimations.js         useMounted, useCountUp, useInterval, useSequence
   components/
-    layout/                  AppShell, StatusBar, TopBar, FlowHeader, BottomNav, Screen
+    layout/                  AppShell, PhoneFrame, StatusBar, TopBar,
+                             FlowHeader, BottomNav, Screen, Reveal
     ui/                      Button, Card, Progress, Badges, Streak, SkillCard,
                              LessonCard, VocabularyCard, Overlay (Modal +
                              BottomSheet), Toast, Icon, Flag
@@ -118,6 +121,25 @@ src/
                              VoiceRecorder, AudioPlayer, AIInsightCard
   screens/                   the 23 screens
 ```
+
+### Motion
+
+Animation is centralised so it stays consistent and never becomes noise:
+
+| Layer | Where |
+|---|---|
+| Page transition | `.animate-page-in` on every routed screen |
+| Scroll reveal | `<Reveal>` marks a block; **one** IntersectionObserver in `AppShell` watches every `.reveal` inside the scroll container |
+| List cascade | `.stagger` on a grid/list — children animate in sequence via CSS `nth-child` delays |
+| CTA shine | `.shine-sweep`, applied automatically to gradient `<Button>` variants |
+| Ambient | drifting backdrop blobs, breathing AI teacher, animated gradient panning, glow pulses |
+| Interaction | `.press` (active scale), `.lift` / `.tap-card` (hover raise), animated tab indicator |
+| Data | count-ups, ring draw-on, bar growth, waveform, mic pulse |
+
+The reveal observer also watches for late-mounted content (a `MutationObserver`)
+and force-reveals anything still hidden after 4s, so a block can never get
+stuck invisible during a demo. Everything collapses under
+`prefers-reduced-motion`.
 
 ### Reusable components
 
@@ -145,7 +167,9 @@ level badge all live in `src/components/` and are shared across screens.
 - **Audio is simulated too:** `AudioPlayer` runs a timer rather than a media
   file, so the waveform, scrubbing and speed controls work with no assets.
 - **Mobile first.** Designed at 390 × 844. On desktop the app is centered at
-  430px inside a device frame on a soft gradient backdrop.
+  430px inside the Pixel mockup (`components/layout/PhoneFrame.jsx`) on a soft
+  gradient backdrop. Swapping the mockup for another device means editing that
+  one file — the app itself knows nothing about the frame.
 - **Reduced motion** is respected — animations collapse for users who ask for it.
 
 ## Verified

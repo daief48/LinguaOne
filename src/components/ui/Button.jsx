@@ -21,6 +21,9 @@ const variants = {
   glass: 'text-white glass-dark hover:bg-white/20',
 }
 
+/** Gradient CTAs get a slow light sweep; flat ones don't. */
+const SHINY = new Set(['primary', 'accent', 'gold'])
+
 export function Button({
   children,
   variant = 'primary',
@@ -34,6 +37,7 @@ export function Button({
   loading = false,
   disabled = false,
   full = true,
+  shine = true,
   ...rest
 }) {
   const cls = [
@@ -41,6 +45,7 @@ export function Button({
     'transition-[filter,background-color,border-color,box-shadow,transform] duration-200 select-none',
     sizes[size],
     variants[variant],
+    shine && SHINY.has(variant) && !disabled && !loading ? 'shine-sweep' : '',
     full ? 'w-full' : '',
     disabled || loading ? 'pointer-events-none opacity-55' : '',
     className,

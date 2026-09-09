@@ -8,7 +8,14 @@ import { Sparkles } from 'lucide-react'
  *
  * state: 'idle' | 'speaking' | 'listening' | 'thinking' | 'happy'
  */
-export function AITeacher({ size = 72, state = 'idle', className = '', halo = true, ring = false }) {
+export function AITeacher({
+  size = 72,
+  state = 'idle',
+  className = '',
+  halo = true,
+  ring = false,
+  breathe = true,
+}) {
   const id = useId().replace(/:/g, '')
   const speaking = state === 'speaking'
   const thinking = state === 'thinking'
@@ -34,7 +41,14 @@ export function AITeacher({ size = 72, state = 'idle', className = '', halo = tr
         </>
       )}
 
-      <svg viewBox="0 0 100 100" width={size} height={size} className="relative block drop-shadow-[0_10px_24px_rgba(91,33,182,0.35)]">
+      <svg
+        viewBox="0 0 100 100"
+        width={size}
+        height={size}
+        className={`relative block origin-center drop-shadow-[0_10px_24px_rgba(91,33,182,0.35)] ${
+          breathe && !speaking ? 'animate-breathe' : ''
+        }`}
+      >
         <defs>
           <linearGradient id={`face-${id}`} x1="10%" y1="0%" x2="90%" y2="100%">
             <stop offset="0%" stopColor="#A78BFA" />

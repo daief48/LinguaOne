@@ -177,7 +177,7 @@ export default function Progress() {
       </div>
 
       {/* stats */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <div className="grid grid-cols-3 gap-2.5">
           {progressStats.map((s, i) => (
             <div key={s.key} className="animate-slide-up" style={{ animationDelay: `${i * 50}ms` }}>
@@ -188,12 +188,12 @@ export default function Progress() {
       </div>
 
       {/* weekly chart */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <WeeklyChart />
       </div>
 
       {/* skills */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <SectionHeader title="Skill breakdown" subtitle="Change vs. last week" />
         <div className="surface space-y-3.5 p-4">
           {skillProgress.map((s) => (
@@ -210,14 +210,14 @@ export default function Progress() {
       </div>
 
       {/* AI insight */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <AIInsightCard eyebrow="AI Insight" action="Practice speaking" to="/conversation" state="thinking">
           {progressInsight}
         </AIInsightCard>
       </div>
 
       {/* common mistakes */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <SectionHeader title="Common Mistakes" subtitle="What your AI teacher keeps correcting" />
         <div className="space-y-2.5">
           {commonMistakes.map((m, i) => (
@@ -253,7 +253,7 @@ export default function Progress() {
       </div>
 
       {/* streak recap */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <div className="flex items-center gap-3 rounded-4xl border border-orange-100 bg-gradient-to-r from-orange-50 via-white to-amber-50/60 p-4">
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 text-white shadow-[0_10px_26px_-10px_rgba(249,115,22,0.9)]">
             <Flame size={22} strokeWidth={2.4} className="fill-white/30" />
@@ -268,7 +268,7 @@ export default function Progress() {
         </div>
       </div>
 
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <Link
           to="/premium"
           className="press focus-ring flex items-center justify-center gap-1.5 rounded-2xl border border-ink-200 bg-white py-3 text-[13px] font-bold text-ink-600 shadow-soft hover:border-ink-300"

@@ -63,7 +63,7 @@ export default function GrammarCorrection() {
       </div>
 
       {/* correction */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <CorrectionCard
           original={gc.original}
           corrected={gc.corrected}
@@ -74,7 +74,7 @@ export default function GrammarCorrection() {
       </div>
 
       {/* grammar tip */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <div className="surface p-4">
           <div className="flex items-center gap-2">
             <span className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 text-white">
@@ -93,7 +93,7 @@ export default function GrammarCorrection() {
       </div>
 
       {/* repeat pattern */}
-      <div className="mt-4 px-4">
+      <div className="reveal mt-4 px-4">
         <div className="flex items-center gap-3 rounded-3xl border border-pink-100 bg-pink-50/60 p-3.5">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white text-pink-600 shadow-soft">
             <Target size={18} strokeWidth={2.4} />
@@ -114,7 +114,7 @@ export default function GrammarCorrection() {
       </div>
 
       {/* more examples */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <h2 className="title-md mb-3">More examples</h2>
         <div className="space-y-2.5">
           {gc.more.map((m, i) => (

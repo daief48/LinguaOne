@@ -39,7 +39,7 @@ export default function LessonDetail() {
   return (
     <div className="flex-1 pb-8">
       {/* hero */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 pb-16 text-white sm:pt-[30px]">
+      <div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 pb-16 text-white sm:pt-[42px]">
         <StatusBar dark className="absolute inset-x-0 top-0" />
         <div className="pointer-events-none absolute inset-0 opacity-20 grid-dots" />
         <div className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-cyan-300/30 blur-3xl" />
@@ -102,7 +102,7 @@ export default function LessonDetail() {
       </div>
 
       {/* sections */}
-      <div className="mt-5 px-4">
+      <div className="reveal mt-5 px-4">
         <h2 className="title-md mb-3">What you’ll do</h2>
         <div className="space-y-2.5">
           {lesson.sections.map((s, i) => {
@@ -167,7 +167,7 @@ export default function LessonDetail() {
       </div>
 
       {/* vocabulary */}
-      <div className="mt-6 px-4">
+      <div className="reveal mt-6 px-4">
         <h2 className="title-md mb-3">Key vocabulary</h2>
         <div className="surface divide-y divide-ink-100 p-0">
           {lesson.vocabulary.map((v) => (

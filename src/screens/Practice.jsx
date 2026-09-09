@@ -56,7 +56,7 @@ export default function Practice() {
       </div>
 
       {/* modes */}
-      <div className="mt-6 px-4">
+      <div className="reveal mt-6 px-4">
         <SectionHeader title="Conversation scenarios" subtitle="Speak your way through real situations" />
         <div className="space-y-2.5">
           {practiceModes.map((m, i) => {
@@ -105,7 +105,7 @@ export default function Practice() {
       </div>
 
       {/* drills */}
-      <div className="mt-6 px-4">
+      <div className="reveal mt-6 px-4">
         <SectionHeader title="Skill drills" subtitle="Short, focused practice" />
         <div className="grid grid-cols-2 gap-3">
           {practiceDrills.map((d, i) => {
@@ -134,7 +134,7 @@ export default function Practice() {
 
       {/* premium nudge */}
       {!isPremium && (
-        <div className="mt-6 px-4">
+        <div className="reveal mt-6 px-4">
           <button
             type="button"
             onClick={() => navigate('/premium')}
