@@ -118,7 +118,7 @@ export default function LessonStudy() {
         </div>
       </div>
 
-      <div className="sticky bottom-0 mt-5 bg-gradient-to-t from-white via-white/95 to-transparent px-4 pb-6 pt-4 safe-bottom">
+      <div className="mt-auto px-4 pb-6 pt-4">
         <Button to="/listening" size="xl" iconRight={ArrowRight} disabled={!allSeen}>
           {allSeen ? 'Continue to Listen' : `Listen to all ${lessonStudy.phrases.length} phrases`}
         </Button>

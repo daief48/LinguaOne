@@ -98,7 +98,7 @@ export default function DailyGoal() {
         </div>
       </div>
 
-      <div className="sticky bottom-0 mt-auto bg-gradient-to-t from-white via-white/95 to-transparent px-5 pb-6 pt-5 safe-bottom">
+      <div className="mt-auto px-5 pb-6 pt-5">
         <Button onClick={() => navigate('/placement')} size="xl" iconRight={ArrowRight}>
           Continue
         </Button>

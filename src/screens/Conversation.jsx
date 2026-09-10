@@ -1,14 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   ArrowRight,
+  Briefcase,
+  Building2,
   Check,
+  Coffee,
   FileText,
   Gauge,
+  GraduationCap,
   Home,
   Loader2,
+  MessageCircle,
   Mic,
+  Plane,
   RotateCcw,
+  ShoppingBag,
   Sparkles,
   Square,
   Zap,
@@ -23,21 +30,52 @@ import { AITeacher } from '../components/ai/AITeacher'
 import { Waveform } from '../components/ai/Waveform'
 import { useApp } from '../context/appContext'
 import { useSequence, useInterval, formatTime } from '../hooks/useAnimations'
-import { conversationScript, conversationTopic } from '../data/mock'
+import { conversationScenarios } from '../data/mock'
+
+/* ---- mode meta ---- */
+const MODE_META = {
+  free:      { label: 'Free Talk',        Icon: MessageCircle, color: 'from-violet-600 to-indigo-600',   bg: 'bg-violet-50',   text: 'text-violet-700'  },
+  interview: { label: 'Job Interview',     Icon: Briefcase,     color: 'from-blue-600 to-indigo-600',     bg: 'bg-blue-50',     text: 'text-blue-700'    },
+  travel:    { label: 'Travel English',    Icon: Plane,         color: 'from-cyan-500 to-blue-500',       bg: 'bg-cyan-50',     text: 'text-cyan-700'    },
+  shopping:  { label: 'Shopping',          Icon: ShoppingBag,   color: 'from-emerald-500 to-green-600',   bg: 'bg-emerald-50',  text: 'text-emerald-700' },
+  casual:    { label: 'Casual Chat',       Icon: Coffee,        color: 'from-amber-500 to-orange-500',    bg: 'bg-amber-50',    text: 'text-amber-700'   },
+  business:  { label: 'Business English',  Icon: Building2,     color: 'from-orange-500 to-rose-500',     bg: 'bg-orange-50',   text: 'text-orange-700'  },
+  academic:  { label: 'Academic English',  Icon: GraduationCap, color: 'from-pink-600 to-violet-600',     bg: 'bg-pink-50',     text: 'text-pink-700'    },
+}
 
 export default function Conversation() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const rawMode = searchParams.get('mode') || 'free'
+  const mode = conversationScenarios[rawMode] ? rawMode : 'free'
+
+  const scenario   = conversationScenarios[mode]
+  const topic      = scenario.topic
+  const script     = scenario.script
+  const meta       = MODE_META[mode]
+  const ModeIcon   = meta.Icon
+
   const { showToast, addXp } = useApp()
   const { run, cancel } = useSequence()
   const endRef = useRef(null)
 
   const [turn, setTurn] = useState(0)
   const [phase, setPhase] = useState('ready') // ready | listening | processing | feedback | done
-  const [items, setItems] = useState([{ kind: 'ai', text: conversationScript[0].ai }])
+  const [items, setItems] = useState([{ kind: 'ai', text: script[0].ai }])
   const [seconds, setSeconds] = useState(0)
   const [transcriptOpen, setTranscriptOpen] = useState(false)
   const [slow, setSlow] = useState(false)
   const [earned, setEarned] = useState(0)
+
+  // Reset when mode changes
+  useEffect(() => {
+    setTurn(0)
+    setPhase('ready')
+    setItems([{ kind: 'ai', text: script[0].ai }])
+    setSeconds(0)
+    setEarned(0)
+    setSlow(false)
+  }, [mode]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useInterval(() => setSeconds((s) => s + 1), phase === 'done' ? null : 1000)
 
@@ -63,7 +101,7 @@ export default function Conversation() {
   }
 
   const reveal = () => {
-    const step = conversationScript[turn]
+    const step = script[turn]
     setItems((list) => [
       ...list,
       { kind: 'user', text: step.userSaid },
@@ -80,7 +118,7 @@ export default function Conversation() {
 
   const next = () => {
     const nextTurn = turn + 1
-    if (nextTurn >= conversationScript.length) {
+    if (nextTurn >= script.length) {
       setPhase('done')
       return
     }
@@ -90,7 +128,7 @@ export default function Conversation() {
       [1100, () => {
         setItems((list) => [
           ...list.filter((i) => i.kind !== 'typing'),
-          { kind: 'ai', text: conversationScript[nextTurn].ai },
+          { kind: 'ai', text: script[nextTurn].ai },
         ])
         setTurn(nextTurn)
         setPhase('ready')
@@ -106,8 +144,8 @@ export default function Conversation() {
       {/* header */}
       <TopBar
         title="AI Conversation"
-        subtitle={conversationTopic.title}
-        backTo="/home"
+        subtitle={topic.title}
+        backTo="/practice"
         right={
           <span className="inline-flex h-9 items-center gap-1.5 rounded-full border border-ink-200 bg-white px-2.5 font-mono text-[12px] font-bold tabular-nums text-ink-600 shadow-soft">
             {formatTime(seconds)}
@@ -115,13 +153,24 @@ export default function Conversation() {
         }
       />
 
+      {/* scenario mode badge strip */}
+      <div className={`flex items-center gap-2.5 border-b border-ink-100 px-4 py-2 ${meta.bg}`}>
+        <span className={`inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r px-2.5 py-1 text-[10.5px] font-extrabold uppercase tracking-wider text-white ${meta.color}`}>
+          <ModeIcon size={11} strokeWidth={2.8} />
+          {meta.label}
+        </span>
+        <span className={`text-[11.5px] font-semibold ${meta.text}`}>
+          {topic.level} · {topic.minutes} min
+        </span>
+      </div>
+
       {/* topic strip */}
       <div className="border-b border-ink-100 bg-white/70 px-4 py-2.5 backdrop-blur">
         <div className="flex items-center gap-2.5">
           <AITeacher size={34} state={aiState} halo={false} />
           <div className="min-w-0 flex-1">
             <p className="truncate text-[12.5px] font-extrabold text-ink-900">Aria · Your AI Teacher</p>
-            <p className="truncate text-[11px] font-medium text-ink-400">Goal: {conversationTopic.goal}</p>
+            <p className="truncate text-[11px] font-medium text-ink-400">Goal: {topic.goal}</p>
           </div>
           {earned > 0 && <XPBadge amount={earned} size="sm" />}
         </div>
@@ -216,12 +265,12 @@ export default function Conversation() {
             <AITeacher size={58} state="happy" className="mx-auto" />
             <h3 className="mt-3 title-lg">Nice conversation!</h3>
             <p className="mx-auto mt-1.5 max-w-[260px] text-[13px] leading-relaxed text-ink-500">
-              You spoke for {formatTime(seconds)} and fixed 2 grammar patterns.
+              You spoke for {formatTime(seconds)} and completed the {meta.label} session.
             </p>
             <div className="mt-4 grid grid-cols-3 gap-2">
               {[
                 { label: 'XP earned', value: `+${earned}` },
-                { label: 'Corrections', value: '2' },
+                { label: 'Corrections', value: String(script.filter(s => s.correction).length) },
                 { label: 'Fluency', value: 'Good' },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-ink-100 bg-white p-2.5">
@@ -234,8 +283,8 @@ export default function Conversation() {
               <Button to="/grammar" size="lg" icon={Sparkles}>
                 Review Grammar Tips
               </Button>
-              <Button onClick={() => navigate('/home')} variant="neutral" size="lg" icon={Home}>
-                Back to Home
+              <Button onClick={() => navigate('/practice')} variant="neutral" size="lg" icon={Home}>
+                Back to Practice
               </Button>
             </div>
           </div>

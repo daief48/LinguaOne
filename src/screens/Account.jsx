@@ -103,7 +103,7 @@ export default function Account() {
         </div>
       </div>
 
-      <div className="sticky bottom-0 bg-gradient-to-t from-white via-white/95 to-transparent px-4 pb-6 pt-4 safe-bottom">
+      <div className="mt-auto px-4 pb-6 pt-4">
         <Button onClick={save} size="xl" loading={saving} icon={saving ? undefined : Check}>
           {saving ? 'Saving…' : 'Save changes'}
         </Button>

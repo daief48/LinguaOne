@@ -54,7 +54,7 @@ export default function LanguageSelect() {
         })}
       </div>
 
-      <div className="sticky bottom-0 mt-auto bg-gradient-to-t from-white via-white/95 to-transparent px-5 pb-6 pt-4 safe-bottom">
+      <div className="mt-auto px-5 pb-6 pt-4">
         <div className="mb-3 flex items-center justify-center gap-2 text-[12.5px] font-semibold text-ink-400">
           <Flag code={selected?.id} size={18} />
           Learning <span className="font-extrabold text-ink-800">{selected?.name}</span>

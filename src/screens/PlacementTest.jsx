@@ -182,7 +182,7 @@ export default function PlacementTest() {
       </div>
 
       {/* footer */}
-      <div className="sticky bottom-0 bg-gradient-to-t from-white via-white/95 to-transparent px-5 pb-6 pt-4 safe-bottom">
+      <div className="mt-auto px-5 pb-6 pt-4">
         {isLast && (
           <p className="mb-3 flex items-center justify-center gap-1.5 text-center text-[12px] font-semibold text-violet-600">
             <Sparkles size={12} strokeWidth={2.8} />

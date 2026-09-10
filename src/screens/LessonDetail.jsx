@@ -207,8 +207,8 @@ export default function LessonDetail() {
       </div>
 
       {/* CTA */}
-      <div className="sticky bottom-0 mt-6 bg-gradient-to-t from-white via-white/95 to-transparent px-4 pb-6 pt-4 safe-bottom">
-        <Button to="/conversation" size="xl" icon={Play}>
+      <div className="mt-auto px-4 pb-6 pt-4">
+        <Button to={`/lesson/${lesson.id}/study`} size="xl" icon={Play}>
           Start Lesson
         </Button>
       </div>

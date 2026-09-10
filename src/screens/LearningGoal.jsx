@@ -64,7 +64,7 @@ export default function LearningGoal() {
         })}
       </div>
 
-      <div className="sticky bottom-0 mt-auto bg-gradient-to-t from-white via-white/95 to-transparent px-5 pb-6 pt-4 safe-bottom">
+      <div className="mt-auto px-5 pb-6 pt-4">
         {selected && (
           <div className="mb-3 flex items-center gap-2.5 rounded-2xl border border-violet-100 bg-violet-50/70 p-2.5">
             <AITeacher size={30} halo={false} />

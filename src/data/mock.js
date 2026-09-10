@@ -329,42 +329,222 @@ export const lessonDetail = {
 
 /* ---------------------------- Conversation ----------------------------- */
 
-export const conversationTopic = {
-  title: 'Introducing Yourself',
-  level: 'B1',
-  minutes: 5,
-  goal: 'Talk about your job and experience',
-}
+/* ------------------- Scenario-based conversation modes ----------------- */
 
-export const conversationScript = [
-  {
-    id: 1,
-    ai: 'Hi! Nice to meet you. Tell me a little about yourself.',
-    userSaid: 'I’m a web developer and I have three years experience.',
-    correction: {
-      corrected: 'I’m a web developer with three years of experience.',
-      tip: 'Use “with” when describing experience.',
-      xp: 10,
-    },
+export const conversationScenarios = {
+  free: {
+    topic: { title: 'Free Conversation', level: 'B1', minutes: 5, goal: 'Talk about anything you like' },
+    script: [
+      {
+        id: 1,
+        ai: 'Hi! Nice to meet you. Tell me a little about yourself.',
+        userSaid: 'I’m a web developer and I have three years experience.',
+        correction: {
+          corrected: 'I’m a web developer with three years of experience.',
+          tip: 'Use “with” when describing experience.',
+          xp: 10,
+        },
+      },
+      {
+        id: 2,
+        ai: 'Nice — three years is solid. What kind of projects do you enjoy most?',
+        userSaid: 'I like to build the dashboards for the startup companies.',
+        correction: {
+          corrected: 'I like building dashboards for startups.',
+          tip: 'Drop “the” when you mean things in general.',
+          xp: 10,
+        },
+      },
+      {
+        id: 3,
+        ai: 'Great. And where would you like your career to go in the next two years?',
+        userSaid: 'I want to become a senior developer and lead a small team.',
+        correction: null,
+        praise: 'Perfect sentence — clear structure and natural word order.',
+      },
+    ],
   },
-  {
-    id: 2,
-    ai: 'Nice — three years is solid. What kind of projects do you enjoy most?',
-    userSaid: 'I like to build the dashboards for the startup companies.',
-    correction: {
-      corrected: 'I like building dashboards for startups.',
-      tip: 'Drop “the” when you mean things in general.',
-      xp: 10,
-    },
+  interview: {
+    topic: { title: 'Job Interview', level: 'B1', minutes: 10, goal: 'Answer common interview questions confidently' },
+    script: [
+      {
+        id: 1,
+        ai: 'Welcome! Please tell me about yourself and your professional background.',
+        userSaid: 'I am a web developer with three years of experience in frontend development.',
+        correction: null,
+        praise: 'Excellent opener — direct, professional and well-structured.',
+      },
+      {
+        id: 2,
+        ai: 'Great. What would you say is your biggest strength?',
+        userSaid: 'I am very good in solving problems and I learn fast new technologies.',
+        correction: {
+          corrected: 'I\'m very good at solving problems and I learn new technologies quickly.',
+          tip: '"Good at" not "good in". Adverb "quickly" goes after the object.',
+          xp: 10,
+        },
+      },
+      {
+        id: 3,
+        ai: 'Where do you see yourself in five years?',
+        userSaid: 'I want to grow into a senior role and eventually lead a development team.',
+        correction: null,
+        praise: 'Perfect — ambitious yet realistic. Great use of "eventually".',
+      },
+    ],
   },
-  {
-    id: 3,
-    ai: 'Great. And where would you like your career to go in the next two years?',
-    userSaid: 'I want to become a senior developer and lead a small team.',
-    correction: null,
-    praise: 'Perfect sentence — clear structure and natural word order.',
+  travel: {
+    topic: { title: 'Travel English', level: 'A2', minutes: 6, goal: 'Navigate airports, hotels and directions' },
+    script: [
+      {
+        id: 1,
+        ai: 'Hello! Welcome to Heathrow Airport. How can I help you today?',
+        userSaid: 'I am looking for the gate for my flight to New York.',
+        correction: null,
+        praise: 'Clear and natural — great travel English!',
+      },
+      {
+        id: 2,
+        ai: 'Your gate is B14. Would you like to check in your luggage as well?',
+        userSaid: 'Yes please. I have one bag for check in and one carry on.',
+        correction: {
+          corrected: 'Yes please. I have one bag to check in and one carry-on.',
+          tip: '"To check in" uses the infinitive here. "Carry-on" is hyphenated as a noun.',
+          xp: 10,
+        },
+      },
+      {
+        id: 3,
+        ai: 'Perfect. Is there anything else you need — directions to the lounge perhaps?',
+        userSaid: 'Could you tell me where the nearest coffee shop is?',
+        correction: null,
+        praise: 'Polite and natural. "Could you tell me where…" is perfect for requests.',
+      },
+    ],
   },
-]
+  shopping: {
+    topic: { title: 'Shopping', level: 'A2', minutes: 5, goal: 'Handle prices, sizes and returns confidently' },
+    script: [
+      {
+        id: 1,
+        ai: 'Hi there! Can I help you find something today?',
+        userSaid: 'Yes, I am looking for a jacket. Do you have it in medium size?',
+        correction: {
+          corrected: 'Yes, I\'m looking for a jacket. Do you have it in a medium?',
+          tip: 'We say "in a medium" or "in medium" — not "medium size" in this context.',
+          xp: 10,
+        },
+      },
+      {
+        id: 2,
+        ai: 'We do! Here\'s the medium. Would you like to try it on?',
+        userSaid: 'Yes please. Also, can I ask, what is your return policy?',
+        correction: null,
+        praise: 'Very natural! "Can I ask" softens the question perfectly.',
+      },
+      {
+        id: 3,
+        ai: 'You can return any unworn item within 30 days with a receipt.',
+        userSaid: 'That\'s great. I will take it. Can I pay by card?',
+        correction: null,
+        praise: 'Short, clear and confident — perfect for shopping English.',
+      },
+    ],
+  },
+  casual: {
+    topic: { title: 'Casual Conversation', level: 'A2', minutes: 7, goal: 'Master everyday small talk' },
+    script: [
+      {
+        id: 1,
+        ai: 'Hey! Haven\'t seen you in a while. How have you been?',
+        userSaid: 'I have been good, thanks! I was very busy with a project at work.',
+        correction: {
+          corrected: 'I\'ve been good, thanks! I\'ve been really busy with a project at work.',
+          tip: 'Use "I\'ve been" (present perfect) for situations continuing up to now.',
+          xp: 10,
+        },
+      },
+      {
+        id: 2,
+        ai: 'Oh nice! What kind of project was it?',
+        userSaid: 'We were building a new app for customers. It was challenging but fun.',
+        correction: null,
+        praise: 'Natural and fluent! "Challenging but fun" is a great collocation.',
+      },
+      {
+        id: 3,
+        ai: 'That sounds exciting! Any plans for the weekend?',
+        userSaid: 'Yes, I am thinking to visit my family and maybe watch a movie.',
+        correction: {
+          corrected: 'Yes, I\'m thinking of visiting my family and maybe watching a movie.',
+          tip: '"Think of + verb-ing" is the natural pattern, not "think to + infinitive".',
+          xp: 10,
+        },
+      },
+    ],
+  },
+  business: {
+    topic: { title: 'Business English', level: 'B2', minutes: 9, goal: 'Communicate professionally in meetings and emails' },
+    script: [
+      {
+        id: 1,
+        ai: 'Good morning. Shall we get started? Could you update us on the project status?',
+        userSaid: 'Good morning. So, we are on track and we will deliver by end of next week.',
+        correction: {
+          corrected: 'Good morning. We\'re on track and will deliver by the end of next week.',
+          tip: 'In formal speech, avoid filler "So" at the start. Add "the" before "end".',
+          xp: 10,
+        },
+      },
+      {
+        id: 2,
+        ai: 'Excellent. Are there any blockers we should be aware of?',
+        userSaid: 'There is one dependency on the API team but we already raised it to them.',
+        correction: {
+          corrected: 'There\'s one dependency on the API team, but we\'ve already flagged it with them.',
+          tip: '"Flagged it with" is more professional than "raised it to". Use present perfect "we\'ve".',
+          xp: 10,
+        },
+      },
+      {
+        id: 3,
+        ai: 'Understood. I\'ll follow up with the API team. Anything else for the group?',
+        userSaid: 'No, that covers everything from our side. Thank you.',
+        correction: null,
+        praise: 'Professional and concise. "From our side" is great business English.',
+      },
+    ],
+  },
+  academic: {
+    topic: { title: 'Academic English', level: 'C1', minutes: 11, goal: 'Present ideas clearly in academic settings' },
+    script: [
+      {
+        id: 1,
+        ai: 'Welcome. Could you briefly outline the main argument of your presentation?',
+        userSaid: 'In my presentation, I will argue that remote work has a positive effect on productivity.',
+        correction: null,
+        praise: 'Clear thesis statement — academic and well-phrased.',
+      },
+      {
+        id: 2,
+        ai: 'Interesting claim. What evidence do you draw on to support it?',
+        userSaid: 'I am using three studies which were conducted in 2022 and 2023 and they show increase of 18% in output.',
+        correction: {
+          corrected: 'I draw on three studies conducted in 2022 and 2023, which show an 18% increase in output.',
+          tip: 'Use "draw on" not "use". "Which" clause avoids repetition. Add "an" before 18%.',
+          xp: 10,
+        },
+      },
+      {
+        id: 3,
+        ai: 'How do you respond to critics who argue that collaboration suffers in remote settings?',
+        userSaid: 'While collaboration does face challenges remotely, the data suggest that asynchronous tools largely compensate for this.',
+        correction: null,
+        praise: 'Excellent academic register! "While…, the data suggest" is sophisticated and accurate.',
+      },
+    ],
+  },
+}
 
 export const grammarCorrection = {
   original: 'I have three years experience.',
@@ -482,14 +662,14 @@ export const ieltsTest = {
 /* ------------------------------- Practice ------------------------------ */
 
 export const practiceModes = [
-  { id: 'free', title: 'Free Conversation', desc: 'Talk about anything with your AI teacher', minutes: 5, icon: 'MessageCircle', tint: 'violet', to: '/conversation', badge: 'Popular' },
+  { id: 'free', title: 'Free Conversation', desc: 'Talk about anything with your AI teacher', minutes: 5, icon: 'MessageCircle', tint: 'violet', to: '/conversation?mode=free', badge: 'Popular' },
   { id: 'ielts', title: 'IELTS Speaking', desc: 'Full mock test with band scoring', minutes: 12, icon: 'GraduationCap', tint: 'indigo', to: '/ielts', badge: 'Exam' },
-  { id: 'interview', title: 'Job Interview', desc: 'Answer real interview questions', minutes: 10, icon: 'Briefcase', tint: 'blue', to: '/conversation', premium: true },
-  { id: 'travel', title: 'Travel English', desc: 'Airports, hotels and directions', minutes: 6, icon: 'Plane', tint: 'cyan', to: '/conversation' },
-  { id: 'shopping', title: 'Shopping', desc: 'Prices, sizes and returns', minutes: 5, icon: 'ShoppingBag', tint: 'green', to: '/conversation' },
-  { id: 'casual', title: 'Casual Conversation', desc: 'Small talk that feels natural', minutes: 7, icon: 'Coffee', tint: 'amber', to: '/conversation' },
-  { id: 'business', title: 'Business English', desc: 'Meetings, email and negotiation', minutes: 9, icon: 'Building2', tint: 'orange', to: '/conversation', premium: true },
-  { id: 'academic', title: 'Academic English', desc: 'Presentations and seminars', minutes: 11, icon: 'BookMarked', tint: 'pink', to: '/conversation', premium: true },
+  { id: 'interview', title: 'Job Interview', desc: 'Answer real interview questions', minutes: 10, icon: 'Briefcase', tint: 'blue', to: '/conversation?mode=interview', premium: true },
+  { id: 'travel', title: 'Travel English', desc: 'Airports, hotels and directions', minutes: 6, icon: 'Plane', tint: 'cyan', to: '/conversation?mode=travel' },
+  { id: 'shopping', title: 'Shopping', desc: 'Prices, sizes and returns', minutes: 5, icon: 'ShoppingBag', tint: 'green', to: '/conversation?mode=shopping' },
+  { id: 'casual', title: 'Casual Conversation', desc: 'Small talk that feels natural', minutes: 7, icon: 'Coffee', tint: 'amber', to: '/conversation?mode=casual' },
+  { id: 'business', title: 'Business English', desc: 'Meetings, email and negotiation', minutes: 9, icon: 'Building2', tint: 'orange', to: '/conversation?mode=business', premium: true },
+  { id: 'academic', title: 'Academic English', desc: 'Presentations and seminars', minutes: 11, icon: 'BookMarked', tint: 'pink', to: '/conversation?mode=academic', premium: true },
 ]
 
 export const practiceDrills = [
