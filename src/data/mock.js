@@ -605,11 +605,11 @@ export const achievements = [
 ]
 
 export const profileMenu = [
-  { id: 'notifications', label: 'Notifications', desc: 'Reminders and streak alerts', icon: 'Bell', tint: 'violet', to: '/settings' },
+  { id: 'notifications', label: 'Notifications', desc: 'Reminders and streak alerts', icon: 'Bell', tint: 'violet', to: '/notifications' },
   { id: 'audio', label: 'Audio & Speech', desc: 'Voice, speed and accent', icon: 'Volume2', tint: 'cyan', to: '/settings' },
   { id: 'preferences', label: 'Learning Preferences', desc: 'Goal, level and daily target', icon: 'Sliders', tint: 'blue', to: '/settings' },
   { id: 'subscription', label: 'Subscription', desc: 'Free plan — upgrade anytime', icon: 'Crown', tint: 'amber', to: '/premium' },
-  { id: 'help', label: 'Help & Support', desc: 'FAQ and contact us', icon: 'HelpCircle', tint: 'green', to: '/settings' },
+  { id: 'help', label: 'Help & Support', desc: 'FAQ and contact us', icon: 'HelpCircle', tint: 'green', to: '/help' },
 ]
 
 /* ------------------------------- Settings ------------------------------ */
@@ -619,18 +619,18 @@ export const settingsGroups = [
     id: 'account',
     title: 'Account',
     items: [
-      { id: 'profile', label: 'Personal details', type: 'link', value: 'Alex Morgan', icon: 'User', tint: 'violet' },
-      { id: 'email', label: 'Email', type: 'link', value: 'alex.morgan@email.com', icon: 'Mail', tint: 'blue' },
-      { id: 'applang', label: 'App language', type: 'link', value: 'English', icon: 'Globe', tint: 'cyan' },
+      { id: 'profile', label: 'Personal details', type: 'link', value: 'Alex Morgan', icon: 'User', tint: 'violet', to: '/settings/account' },
+      { id: 'email', label: 'Email', type: 'link', value: 'alex.morgan@email.com', icon: 'Mail', tint: 'blue', to: '/settings/account' },
+      { id: 'applang', label: 'App language', type: 'link', value: 'English', icon: 'Globe', tint: 'cyan', picker: 'applang' },
     ],
   },
   {
     id: 'learning',
     title: 'Learning Preferences',
     items: [
-      { id: 'daily', label: 'Daily goal', type: 'link', value: '15 minutes', icon: 'Target', tint: 'green' },
-      { id: 'level', label: 'Current level', type: 'link', value: 'B1 Intermediate', icon: 'GraduationCap', tint: 'indigo' },
-      { id: 'focus', label: 'Focus skill', type: 'link', value: 'Speaking', icon: 'Speech', tint: 'violet' },
+      { id: 'daily', label: 'Daily goal', type: 'link', value: '15 minutes', icon: 'Target', tint: 'green', picker: 'daily' },
+      { id: 'level', label: 'Current level', type: 'link', value: 'B1 Intermediate', icon: 'GraduationCap', tint: 'indigo', picker: 'level' },
+      { id: 'focus', label: 'Focus skill', type: 'link', value: 'Speaking', icon: 'Speech', tint: 'violet', picker: 'focus' },
       { id: 'difficulty', label: 'Auto-adjust difficulty', type: 'toggle', value: true, icon: 'Wand2', tint: 'pink' },
     ],
   },
@@ -647,8 +647,8 @@ export const settingsGroups = [
     id: 'speech',
     title: 'Speech & Audio',
     items: [
-      { id: 'voice', label: 'AI teacher voice', type: 'link', value: 'Aria — British', icon: 'Volume2', tint: 'violet' },
-      { id: 'speed', label: 'Speaking speed', type: 'link', value: 'Natural', icon: 'Gauge', tint: 'cyan' },
+      { id: 'voice', label: 'AI teacher voice', type: 'link', value: 'Aria — British', icon: 'Volume2', tint: 'violet', picker: 'voice' },
+      { id: 'speed', label: 'Speaking speed', type: 'link', value: 'Natural', icon: 'Gauge', tint: 'cyan', picker: 'speed' },
       { id: 'autoplay', label: 'Autoplay audio', type: 'toggle', value: true, icon: 'Play', tint: 'green' },
       { id: 'haptics', label: 'Haptic feedback', type: 'toggle', value: true, icon: 'Vibrate', tint: 'pink' },
     ],
@@ -659,16 +659,16 @@ export const settingsGroups = [
     items: [
       { id: 'recordings', label: 'Save voice recordings', type: 'toggle', value: true, icon: 'Mic', tint: 'violet' },
       { id: 'analytics', label: 'Share usage analytics', type: 'toggle', value: false, icon: 'Activity', tint: 'blue' },
-      { id: 'download', label: 'Download my data', type: 'link', value: '', icon: 'Download', tint: 'cyan' },
+      { id: 'download', label: 'Download my data', type: 'link', value: '', icon: 'Download', tint: 'cyan', action: 'export' },
     ],
   },
   {
     id: 'support',
     title: 'Subscription & Support',
     items: [
-      { id: 'plan', label: 'Manage subscription', type: 'link', value: 'Free', icon: 'Crown', tint: 'amber' },
-      { id: 'help', label: 'Help center', type: 'link', value: '', icon: 'HelpCircle', tint: 'green' },
-      { id: 'rate', label: 'Rate LinguaOne', type: 'link', value: '', icon: 'Star', tint: 'orange' },
+      { id: 'plan', label: 'Manage subscription', type: 'link', value: 'Free', icon: 'Crown', tint: 'amber', to: '/premium' },
+      { id: 'help', label: 'Help center', type: 'link', value: '', icon: 'HelpCircle', tint: 'green', to: '/help' },
+      { id: 'rate', label: 'Rate LinguaOne', type: 'link', value: '', icon: 'Star', tint: 'orange', action: 'rate' },
     ],
   },
 ]
@@ -696,5 +696,231 @@ export const onboardingSlides = [
     desc: 'Your AI creates a personalized learning journey based on your goals.',
     visual: 'progress',
     tint: 'pink',
+  },
+]
+
+/* ----------------------------- Notifications ---------------------------- */
+
+export const notifications = [
+  {
+    id: 'streak',
+    group: 'Today',
+    title: 'Keep your 7 day streak alive',
+    body: 'You have 3 minutes left to hit today’s goal.',
+    time: '2h ago',
+    icon: 'Flame',
+    tint: 'orange',
+    unread: true,
+    to: '/conversation',
+  },
+  {
+    id: 'tip',
+    group: 'Today',
+    title: 'Aria noticed a pattern',
+    body: '“years experience” came up again — here’s the fix.',
+    time: '5h ago',
+    icon: 'Sparkles',
+    tint: 'violet',
+    unread: true,
+    to: '/grammar',
+  },
+  {
+    id: 'words',
+    group: 'Today',
+    title: '5 new words are ready',
+    body: 'Adapt, Reliable, Deadline and 2 more.',
+    time: '8h ago',
+    icon: 'BookOpen',
+    tint: 'green',
+    unread: false,
+    to: '/vocabulary',
+  },
+  {
+    id: 'badge',
+    group: 'Earlier',
+    title: 'Achievement unlocked',
+    body: '7 Day Streak — a full week without missing.',
+    time: 'Yesterday',
+    icon: 'Trophy',
+    tint: 'amber',
+    unread: false,
+    to: '/achievements',
+  },
+  {
+    id: 'report',
+    group: 'Earlier',
+    title: 'Your weekly report is ready',
+    body: 'Listening improved 9% — speaking needs attention.',
+    time: '2 days ago',
+    icon: 'BarChart3',
+    tint: 'blue',
+    unread: false,
+    to: '/progress',
+  },
+  {
+    id: 'ielts',
+    group: 'Earlier',
+    title: 'IELTS test in 74 days',
+    body: 'You’re on track for band 7.0 — keep practising Part 2.',
+    time: '3 days ago',
+    icon: 'GraduationCap',
+    tint: 'indigo',
+    unread: false,
+    to: '/ielts',
+  },
+]
+
+/* ------------------------------ Help centre ----------------------------- */
+
+export const faqs = [
+  {
+    id: 'how-ai',
+    q: 'How does the AI teacher work?',
+    a: 'Aria listens to what you say, transcribes it, and checks grammar, vocabulary and pronunciation in real time. Every correction is saved so your weak patterns shape tomorrow’s lesson.',
+  },
+  {
+    id: 'accurate',
+    q: 'How accurate is the pronunciation score?',
+    a: 'Your speech is compared against native recordings across three areas — word stress, vowel length and rhythm. Scores above 80% are close to native for that word.',
+  },
+  {
+    id: 'ielts',
+    q: 'Is the IELTS band score official?',
+    a: 'No. It is an estimate against the four official speaking criteria and is meant to track progress, not replace a real test result.',
+  },
+  {
+    id: 'offline',
+    q: 'Can I practise without internet?',
+    a: 'Vocabulary cards and saved lessons work offline. AI conversation and scoring need a connection.',
+  },
+  {
+    id: 'cancel',
+    q: 'How do I cancel Premium?',
+    a: 'Settings → Manage subscription → Cancel. You keep Premium until the end of the period you already paid for.',
+  },
+  {
+    id: 'reset',
+    q: 'Can I change my level or goal later?',
+    a: 'Yes — Settings → Learning Preferences. You can also retake the placement test at any time.',
+  },
+]
+
+export const helpChannels = [
+  { id: 'chat', title: 'Chat with support', desc: 'Usually replies in a few minutes', icon: 'MessageCircle', tint: 'violet' },
+  { id: 'email', title: 'Email us', desc: 'support@linguaone.app', icon: 'Mail', tint: 'blue' },
+  { id: 'community', title: 'Community forum', desc: 'Ask other learners', icon: 'Users', tint: 'green' },
+]
+
+/* --------------------------- Lesson study step -------------------------- */
+
+export const lessonStudy = {
+  title: 'Introducing Yourself',
+  intro: 'Four phrases that cover almost any introduction. Listen, then say each one out loud.',
+  phrases: [
+    {
+      id: 'p1',
+      phrase: 'I’m a web developer.',
+      note: 'Start with your role — short and confident.',
+      alt: 'I work as a web developer.',
+    },
+    {
+      id: 'p2',
+      phrase: 'I have three years of experience.',
+      note: 'Number + years + of + noun.',
+      alt: 'I’ve been doing this for three years.',
+    },
+    {
+      id: 'p3',
+      phrase: 'I mostly work on mobile apps.',
+      note: '“Mostly” softens it and sounds natural.',
+      alt: 'I specialise in mobile apps.',
+    },
+    {
+      id: 'p4',
+      phrase: 'Outside work, I’m into photography.',
+      note: '“I’m into” is more natural than “I like”.',
+      alt: 'In my free time I do photography.',
+    },
+  ],
+  tip: 'Native speakers rarely list everything. Give your role, one detail, then ask a question back.',
+}
+
+/* ------------------------- Settings option lists ------------------------ */
+
+export const settingsOptions = {
+  applang: {
+    title: 'App language',
+    subtitle: 'The language of the interface, not what you are learning.',
+    options: ['English', 'বাংলা', 'Español', 'Deutsch', 'Français', '日本語'],
+  },
+  level: {
+    title: 'Current level',
+    subtitle: 'Your AI teacher adjusts difficulty from here.',
+    options: ['A1 Beginner', 'A2 Elementary', 'B1 Intermediate', 'B2 Upper-Intermediate', 'C1 Advanced'],
+  },
+  focus: {
+    title: 'Focus skill',
+    subtitle: 'Where most of your practice time goes.',
+    options: ['Speaking', 'Listening', 'Grammar', 'Vocabulary', 'Pronunciation'],
+  },
+  voice: {
+    title: 'AI teacher voice',
+    subtitle: 'Aria can speak in several accents.',
+    options: ['Aria — British', 'Aria — American', 'Noah — American', 'Isla — Australian', 'Kai — Neutral'],
+  },
+  speed: {
+    title: 'Speaking speed',
+    subtitle: 'How fast your AI teacher talks.',
+    options: ['Slow', 'Relaxed', 'Natural', 'Fast'],
+  },
+}
+
+/* The pronunciation coach cycles through these — "Up next" swaps the target. */
+export const pronunciationSet = [
+  pronunciationWord,
+  {
+    word: 'Professional',
+    phonetic: '/prəˈfeʃənl/',
+    syllables: ['pro', 'FE', 'ssio', 'nal'],
+    stressIndex: 1,
+    meaning: 'Relating to a job that needs training and skill.',
+    score: 76,
+    verdict: 'Almost there',
+    areas: [
+      { key: 'stress', label: 'Stress', score: 71, note: 'Stress drifted to the first syllable.', tint: 'violet' },
+      { key: 'vowels', label: 'Vowels', score: 80, note: 'Clear vowels throughout.', tint: 'cyan' },
+      { key: 'rhythm', label: 'Rhythm', score: 78, note: 'Slightly rushed at the end.', tint: 'green' },
+    ],
+    nextWords: ['Experience', 'Comfortable', 'Opportunity'],
+  },
+  {
+    word: 'Comfortable',
+    phonetic: '/ˈkʌmftəbl/',
+    syllables: ['COMF', 'ta', 'ble'],
+    stressIndex: 0,
+    meaning: 'Feeling relaxed and free from worry.',
+    score: 68,
+    verdict: 'Keep practising',
+    areas: [
+      { key: 'stress', label: 'Stress', score: 82, note: 'First syllable stress — correct.', tint: 'violet' },
+      { key: 'vowels', label: 'Vowels', score: 58, note: 'Native speakers drop the “or” — say “COMF-ta-ble”.', tint: 'cyan' },
+      { key: 'rhythm', label: 'Rhythm', score: 64, note: 'Three syllables, not four.', tint: 'green' },
+    ],
+    nextWords: ['Experience', 'Professional', 'Opportunity'],
+  },
+  {
+    word: 'Opportunity',
+    phonetic: '/ˌɒpəˈtjuːnəti/',
+    syllables: ['op', 'por', 'TU', 'ni', 'ty'],
+    stressIndex: 2,
+    meaning: 'A chance to do something you want to do.',
+    score: 88,
+    verdict: 'Excellent!',
+    areas: [
+      { key: 'stress', label: 'Stress', score: 92, note: 'Perfect stress on “TU”.', tint: 'violet' },
+      { key: 'vowels', label: 'Vowels', score: 85, note: 'Clean long /uː/.', tint: 'cyan' },
+      { key: 'rhythm', label: 'Rhythm', score: 87, note: 'Smooth across all five syllables.', tint: 'green' },
+    ],
+    nextWords: ['Experience', 'Professional', 'Comfortable'],
   },
 ]

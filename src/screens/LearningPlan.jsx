@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Calendar, Check, Clock, Lock, Play, Sparkles, Target } from 'lucide-react'
 import { TopBar } from '../components/layout/TopBar'
 import { Button } from '../components/ui/Button'
@@ -8,6 +9,16 @@ import { AITeacher } from '../components/ai/AITeacher'
 import { useApp } from '../context/appContext'
 import { learningPlan, learningGoals } from '../data/mock'
 import { tint as getTint } from '../data/tints'
+
+/** Each planned day opens the screen that teaches that skill. */
+const DAY_ROUTES = {
+  Speaking: '/conversation',
+  Vocabulary: '/vocabulary',
+  Listening: '/listening',
+  Grammar: '/grammar',
+  Pronunciation: '/pronunciation',
+  Review: '/progress',
+}
 
 function BuildingState() {
   return (
@@ -35,8 +46,9 @@ function BuildingState() {
 }
 
 export default function LearningPlan() {
+  const navigate = useNavigate()
   const [building, setBuilding] = useState(true)
-  const { dailyGoal, goalId } = useApp()
+  const { dailyGoal, goalId, showToast } = useApp()
   const goal = learningGoals.find((g) => g.id === goalId)
 
   useEffect(() => {
@@ -128,12 +140,18 @@ export default function LearningPlan() {
             const current = d.status === 'current'
             const locked = d.status === 'locked'
             return (
-              <div
+              <button
                 key={d.day}
-                className={`relative flex items-center gap-3 rounded-3xl border p-3.5 transition duration-300 animate-slide-up ${
+                type="button"
+                onClick={() =>
+                  locked
+                    ? showToast(`Day ${d.day} unlocks after day ${d.day - 1}`, { variant: 'default' })
+                    : navigate(DAY_ROUTES[d.skill] || '/conversation')
+                }
+                className={`press focus-ring relative flex w-full items-center gap-3 rounded-3xl border p-3.5 text-left transition duration-300 animate-slide-up ${
                   current
                     ? 'border-violet-200 bg-gradient-to-r from-violet-50/90 to-white shadow-card'
-                    : 'border-ink-100 bg-white shadow-soft'
+                    : 'border-ink-100 bg-white shadow-soft hover:border-ink-200'
                 }`}
                 style={{ animationDelay: `${i * 60}ms` }}
               >
@@ -182,7 +200,7 @@ export default function LearningPlan() {
                     </span>
                   )}
                 </span>
-              </div>
+              </button>
             )
           })}
         </div>

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Check, ChevronRight, Clock, Lock, Play, Sparkles, Volume2, Zap } from 'lucide-react'
 import { TopBar } from '../components/layout/TopBar'
 import { Button } from '../components/ui/Button'
@@ -19,8 +19,17 @@ const findLesson = (id) => {
   return null
 }
 
+/** Each part of a lesson opens the screen that actually teaches it. */
+const SECTION_ROUTES = {
+  learn: (id) => `/lesson/${id}/study`,
+  listen: () => '/listening',
+  speak: () => '/conversation',
+  practice: () => '/grammar',
+}
+
 export default function LessonDetail() {
   const { lessonId } = useParams()
+  const navigate = useNavigate()
   const { showToast } = useApp()
 
   const lesson = useMemo(() => {
@@ -36,6 +45,15 @@ export default function LessonDetail() {
     }
   }, [lessonId])
 
+  const openSection = (section, locked) => {
+    if (locked) {
+      showToast('Finish the previous part first', { variant: 'default' })
+      return
+    }
+    const to = SECTION_ROUTES[section.id]
+    navigate(to ? to(lesson.id) : '/conversation')
+  }
+
   return (
     <div className="flex-1 pb-8">
       {/* hero */}
@@ -44,7 +62,7 @@ export default function LessonDetail() {
         <div className="pointer-events-none absolute inset-0 opacity-20 grid-dots" />
         <div className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-cyan-300/30 blur-3xl" />
 
-        <TopBar variant="dark" border={false} />
+        <TopBar variant="dark" border={false} fallback="/learn" />
 
         <div className="relative px-5 pt-1">
           <div className="flex items-start gap-3">
@@ -114,11 +132,7 @@ export default function LessonDetail() {
               <button
                 key={s.id}
                 type="button"
-                onClick={() =>
-                  locked
-                    ? showToast('Finish the previous part first', { variant: 'default' })
-                    : showToast(`Opening “${s.label}”`, { variant: 'ai' })
-                }
+                onClick={() => openSection(s, locked)}
                 className={`press focus-ring flex w-full items-center gap-3 rounded-3xl border p-3.5 text-left transition duration-300 animate-slide-up ${
                   current
                     ? 'border-violet-200 bg-gradient-to-r from-violet-50/80 to-white shadow-card'

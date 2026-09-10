@@ -2,6 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import { ChevronLeft } from 'lucide-react'
 
 /**
+ * True when there is somewhere to go back to. React Router tracks its
+ * position in `history.state.idx`; at 0 the screen was opened directly
+ * (deep link, refresh) and `navigate(-1)` would leave the app.
+ */
+export const canGoBack = () => (window.history.state?.idx ?? 0) > 0
+
+/**
  * Sticky screen header with a back affordance.
  * variant: 'light' (default) | 'dark' (sits on a gradient hero)
  */
@@ -10,6 +17,7 @@ export function TopBar({
   subtitle,
   onBack,
   backTo,
+  fallback = '/home',
   right,
   variant = 'light',
   border = true,
@@ -22,7 +30,8 @@ export function TopBar({
   const handleBack = () => {
     if (onBack) return onBack()
     if (backTo) return navigate(backTo)
-    return navigate(-1)
+    // Deep-linked or refreshed: there is no history to pop.
+    return canGoBack() ? navigate(-1) : navigate(fallback)
   }
 
   return (

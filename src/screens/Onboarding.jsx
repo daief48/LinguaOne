@@ -231,7 +231,7 @@ export default function Onboarding() {
 
         <button
           type="button"
-          onClick={() => navigate('/language')}
+          onClick={() => navigate('/login')}
           className="press focus-ring mt-3.5 w-full rounded-xl py-2 text-[13.5px] font-semibold text-ink-500 hover:text-ink-800"
         >
           Already have an account? <span className="font-bold text-violet-600">Log in</span>

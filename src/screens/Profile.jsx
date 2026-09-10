@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { ChevronRight, Crown, Flame, LogOut, Pencil, Settings as SettingsIcon, Zap } from 'lucide-react'
 import { Screen } from '../components/layout/Screen'
 import { SectionHeader } from '../components/ui/Card'
 import { Icon } from '../components/ui/Icon'
 import { LevelBadge, PremiumBadge } from '../components/ui/Badges'
 import { ProgressBar } from '../components/ui/Progress'
+import { Modal } from '../components/ui/Overlay'
+import { Button } from '../components/ui/Button'
 import { StatusBar } from '../components/layout/StatusBar'
 import { Flag } from '../components/ui/Flag'
 import { useApp } from '../context/appContext'
@@ -12,6 +15,8 @@ import { achievements, dailyGoalOptions, languages, learningGoals, profileMenu, 
 import { tint as getTint } from '../data/tints'
 
 export default function Profile() {
+  const navigate = useNavigate()
+  const [confirmLogout, setConfirmLogout] = useState(false)
   const { xp, dailyGoal, goalId, languageId, isPremium, showToast } = useApp()
   const language = languages.find((l) => l.id === languageId) || languages[0]
   const goal = learningGoals.find((g) => g.id === goalId) || learningGoals[0]
@@ -44,7 +49,7 @@ export default function Profile() {
             </div>
             <button
               type="button"
-              onClick={() => showToast('Photo picker is disabled in this demo', { variant: 'default' })}
+              onClick={() => navigate('/settings/account')}
               aria-label="Change photo"
               className="press absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full bg-white text-violet-600 shadow-card"
             >
@@ -131,13 +136,14 @@ export default function Profile() {
           title="Achievements"
           subtitle={`${earned.length} of ${achievements.length} unlocked`}
           action="All"
-          onAction={() => showToast('Achievement gallery coming soon', { variant: 'default' })}
+          actionTo="/achievements"
         />
         <div className="grid grid-cols-3 gap-2.5">
           {achievements.map((a, i) => {
             const t = getTint(a.tint)
             return (
-              <div
+              <Link
+                to="/achievements"
                 key={a.id}
                 className={`relative flex flex-col items-center overflow-hidden rounded-3xl border p-3 text-center animate-slide-up ${
                   a.earned ? 'border-ink-100 bg-white shadow-soft' : 'border-dashed border-ink-200 bg-ink-50/60'
@@ -157,7 +163,7 @@ export default function Profile() {
                 <span className="mt-1 block text-[10px] font-semibold text-ink-300">
                   {a.earned ? a.date : `${a.progress}${a.id === 'band-7' ? '%' : ' left'}`}
                 </span>
-              </div>
+              </Link>
             )
           })}
         </div>
@@ -214,7 +220,7 @@ export default function Profile() {
       <div className="reveal mt-5 px-4">
         <button
           type="button"
-          onClick={() => showToast('Sign out is disabled in this demo', { variant: 'default' })}
+          onClick={() => setConfirmLogout(true)}
           className="press focus-ring flex w-full items-center justify-center gap-2 rounded-2xl border border-ink-200 bg-white py-3.5 text-[13.5px] font-bold text-rose-500 shadow-soft hover:border-rose-200"
         >
           <LogOut size={16} strokeWidth={2.5} />
@@ -222,6 +228,42 @@ export default function Profile() {
         </button>
         <p className="mt-4 text-center text-[11.5px] text-ink-300">LinguaOne · Version 1.0.0 (demo)</p>
       </div>
+
+      <Modal
+        open={confirmLogout}
+        onClose={() => setConfirmLogout(false)}
+        title="Log out?"
+        subtitle="Your streak and progress stay saved to this account."
+        footer={
+          <>
+            <Button
+              onClick={() => {
+                setConfirmLogout(false)
+                showToast('Signed out', { variant: 'default' })
+                navigate('/login')
+              }}
+              variant="dark"
+              size="lg"
+              icon={LogOut}
+            >
+              Log out
+            </Button>
+            <Button onClick={() => setConfirmLogout(false)} variant="ghost" size="md">
+              Stay logged in
+            </Button>
+          </>
+        }
+      >
+        <div className="flex items-center gap-3 rounded-2xl bg-ink-50 p-3.5">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-600 via-indigo-600 to-cyan-500 font-display text-[13px] font-extrabold text-white">
+            {user.initials}
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-[13.5px] font-extrabold text-ink-900">{user.fullName}</p>
+            <p className="truncate text-[11.5px] text-ink-400">{user.email}</p>
+          </div>
+        </div>
+      </Modal>
     </Screen>
   )
 }

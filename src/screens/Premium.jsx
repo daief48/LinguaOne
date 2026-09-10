@@ -6,6 +6,7 @@ import { Icon } from '../components/ui/Icon'
 import { Modal } from '../components/ui/Overlay'
 import { AITeacher } from '../components/ai/AITeacher'
 import { StatusBar } from '../components/layout/StatusBar'
+import { canGoBack } from '../components/layout/TopBar'
 import { useApp } from '../context/appContext'
 import { plans, premiumFeatures, premiumProof } from '../data/mock'
 
@@ -39,7 +40,7 @@ export default function Premium() {
         <div className="relative flex items-center justify-between">
           <button
             type="button"
-            onClick={() => navigate(-1)}
+            onClick={() => (canGoBack() ? navigate(-1) : navigate('/home'))}
             aria-label="Go back"
             className="press focus-ring grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20"
           >

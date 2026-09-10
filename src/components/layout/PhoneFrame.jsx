@@ -1,18 +1,30 @@
+import { useEffect, useState } from 'react'
+
 /**
- * Desktop device mockup — Google Pixel.
+ * Google Pixel mockup, at true Pixel logical dimensions.
  *
- * Below `sm` the app is the page: no frame, no chrome. From `sm` up it sits
- * inside a Pixel-style shell — uniform bezel, centred hole-punch camera,
- * power + volume rocker on the right edge, Android gesture bar at the bottom.
+ * The screen is exactly 412 × 915 CSS px — the Pixel 7/8/9 viewport Chrome
+ * DevTools reports — so the app renders at real device resolution. When the
+ * window is too short for the full device the whole shell is scaled down
+ * rather than the screen being cropped, so the proportions stay exact.
+ *
+ * Under 640px wide there is no frame: the app simply is the page.
  */
+
+export const SCREEN_W = 412
+export const SCREEN_H = 915
+const BEZEL = 12
+const SHELL_W = SCREEN_W + BEZEL * 2 // 436
+const SHELL_H = SCREEN_H + BEZEL * 2 // 939
+const FRAME_MIN_WIDTH = 640
 
 /** Pixel's centred hole-punch selfie camera. Floats above app content. */
 function PunchHoleCamera() {
   return (
-    <div className="pointer-events-none absolute left-1/2 top-[13px] z-[60] hidden -translate-x-1/2 sm:block">
-      <span className="relative grid h-[14px] w-[14px] place-items-center rounded-full bg-[#0a0d14] shadow-[0_0_0_1.5px_rgba(0,0,0,0.35)]">
-        <span className="h-[8px] w-[8px] rounded-full bg-gradient-to-br from-[#1d3a5c] to-[#0b1522]" />
-        <span className="absolute left-[3.5px] top-[3px] h-[2.5px] w-[2.5px] rounded-full bg-white/35" />
+    <div className="pointer-events-none absolute left-1/2 top-[14px] z-[60] -translate-x-1/2">
+      <span className="relative grid h-[13px] w-[13px] place-items-center rounded-full bg-[#07090e] shadow-[0_0_0_1.5px_rgba(0,0,0,0.4)]">
+        <span className="h-[7px] w-[7px] rounded-full bg-gradient-to-br from-[#1e3d61] to-[#0a1220]" />
+        <span className="absolute left-[3px] top-[2.5px] h-[2px] w-[2px] rounded-full bg-white/40" />
       </span>
     </div>
   )
@@ -21,9 +33,9 @@ function PunchHoleCamera() {
 /** Android gesture navigation bar. */
 function GestureBar({ dark = false }) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-[8px] z-[55] hidden justify-center sm:flex">
+    <div className="pointer-events-none absolute inset-x-0 bottom-[9px] z-[55] flex justify-center">
       <span
-        className={`h-[4px] w-[112px] rounded-full transition-colors duration-500 ${
+        className={`h-[4px] w-[108px] rounded-full transition-colors duration-500 ${
           dark ? 'bg-white/75' : 'bg-ink-900/30'
         }`}
       />
@@ -31,56 +43,92 @@ function GestureBar({ dark = false }) {
   )
 }
 
-/**
- * Pixel puts both buttons on the right: power on top (short, lighter finish),
- * volume rocker below it.
- */
+/** Pixel puts both buttons on the right: power on top, volume rocker below. */
 function SideButtons() {
   return (
-    <div className="pointer-events-none absolute inset-0 hidden sm:block" aria-hidden="true">
-      {/* power */}
-      <span className="absolute -right-[3px] top-[150px] h-[38px] w-[3px] rounded-r-md bg-gradient-to-b from-[#8b93a3] via-[#6d7484] to-[#8b93a3]" />
-      {/* volume rocker */}
-      <span className="absolute -right-[3px] top-[204px] h-[68px] w-[3px] rounded-r-md bg-gradient-to-b from-[#4c525e] via-[#343a45] to-[#4c525e]" />
-      {/* left antenna seam */}
-      <span className="absolute -left-[1px] top-[190px] h-[2px] w-[2px] rounded-full bg-white/20" />
+    <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      <span className="absolute -right-[2.5px] top-[168px] h-[40px] w-[2.5px] rounded-r-md bg-gradient-to-b from-[#9aa2b1] via-[#767e8d] to-[#9aa2b1]" />
+      <span className="absolute -right-[2.5px] top-[224px] h-[74px] w-[2.5px] rounded-r-md bg-gradient-to-b from-[#4e545f] via-[#363c46] to-[#4e545f]" />
     </div>
   )
 }
 
+/** Whether to draw the device, and how much to shrink it to fit the window. */
+function useDeviceFit() {
+  const read = () => {
+    if (typeof window === 'undefined') return { framed: true, scale: 1 }
+    if (window.innerWidth < FRAME_MIN_WIDTH) return { framed: false, scale: 1 }
+    const fit = Math.min((window.innerHeight - 40) / SHELL_H, (window.innerWidth - 40) / SHELL_W)
+    return { framed: true, scale: Math.min(1, Math.round(fit * 100) / 100) }
+  }
+
+  const [fit, setFit] = useState(read)
+
+  useEffect(() => {
+    const onResize = () => setFit(read())
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  return fit
+}
+
 export function PhoneFrame({ children, darkIndicator = false, screenProps = {} }) {
+  const { framed, scale } = useDeviceFit()
+
+  /* Small screens: the app fills the browser, no device chrome. */
+  if (!framed) {
+    return (
+      <div
+        {...screenProps}
+        className={`relative z-10 flex h-[100dvh] w-full flex-col overflow-hidden bg-white ${
+          screenProps.className || ''
+        }`}
+      >
+        {children}
+      </div>
+    )
+  }
+
   return (
-    <div className="relative z-10 w-full sm:w-auto">
-      {/* outer shell — matte graphite with a polished aluminium rail */}
-      <div className="relative w-full sm:rounded-[50px] sm:bg-gradient-to-b sm:from-[#4a505c] sm:via-[#22262e] sm:to-[#3c424d] sm:p-[10px] sm:shadow-device">
-        {/* rail highlight */}
-        <div
-          className="pointer-events-none absolute inset-0 hidden rounded-[50px] sm:block"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 12%, rgba(255,255,255,0) 88%, rgba(255,255,255,0.18) 100%)',
-          }}
-          aria-hidden="true"
-        />
-        {/* inner black rim between rail and glass */}
-        <div
-          className="pointer-events-none absolute inset-[7px] hidden rounded-[43px] ring-[3px] ring-[#0a0c11] sm:block"
-          aria-hidden="true"
-        />
-        <SideButtons />
+    <div
+      className="relative z-10 shrink-0"
+      style={{ width: SHELL_W * scale, height: SHELL_H * scale }}
+    >
+      <div
+        style={{
+          width: SHELL_W,
+          height: SHELL_H,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+        }}
+      >
+        {/* shell */}
+        <div className="relative h-full w-full rounded-[56px] bg-gradient-to-b from-[#4d535f] via-[#23272f] to-[#3f454f] shadow-device">
+          <div
+            className="pointer-events-none absolute inset-0 rounded-[56px]"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 90%, rgba(255,255,255,0.20) 100%)',
+            }}
+            aria-hidden="true"
+          />
+          <SideButtons />
 
-        {/* screen */}
-        <div
-          {...screenProps}
-          className={`relative flex h-[100dvh] w-full flex-col overflow-hidden bg-white sm:h-[min(872px,calc(100dvh-8rem))] sm:w-[430px] sm:rounded-[41px] ${
-            screenProps.className || ''
-          }`}
-        >
-          {children}
-          <GestureBar dark={darkIndicator} />
+          {/* screen */}
+          <div
+            {...screenProps}
+            className={`relative flex flex-col overflow-hidden rounded-[44px] bg-white ring-[3px] ring-[#080a0e] ${
+              screenProps.className || ''
+            }`}
+            style={{ width: SCREEN_W, height: SCREEN_H, margin: BEZEL }}
+          >
+            {children}
+            <GestureBar dark={darkIndicator} />
+          </div>
+
+          <PunchHoleCamera />
         </div>
-
-        <PunchHoleCamera />
       </div>
     </div>
   )

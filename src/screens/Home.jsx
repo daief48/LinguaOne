@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
   Bell,
@@ -45,6 +45,7 @@ const greeting = () => {
 }
 
 export default function Home() {
+  const navigate = useNavigate()
   const { languageId, setLanguageId, dailyGoal, minutesToday, savedWords, toggleSavedWord, showToast, isPremium } =
     useApp()
   const [sheetOpen, setSheetOpen] = useState(false)
@@ -70,7 +71,7 @@ export default function Home() {
             <button
               type="button"
               aria-label="Notifications"
-              onClick={() => showToast('You practiced 5 days in a row — keep going!', { variant: 'ai' })}
+              onClick={() => navigate('/notifications')}
               className="press focus-ring relative grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-white text-ink-500 shadow-soft hover:text-ink-900"
             >
               <Bell size={17} strokeWidth={2.3} />
@@ -110,7 +111,7 @@ export default function Home() {
           streak={user.streak}
           minutes={minutesToday}
           goal={dailyGoal}
-          onClick={() => showToast(`${dailyGoal - minutesToday} minutes left today`, { variant: "default" })}
+          onClick={() => navigate('/progress')}
         />
       </Reveal>
 

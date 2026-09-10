@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Calendar, Check, ChevronRight, GraduationCap, Lightbulb, Lock, Play, Target } from 'lucide-react'
 import { TopBar } from '../components/layout/TopBar'
 import { Button } from '../components/ui/Button'
 import { CircularProgress, ProgressBar } from '../components/ui/Progress'
 import { AITeacher } from '../components/ai/AITeacher'
 import { StatusBar } from '../components/layout/StatusBar'
+import { useApp } from '../context/appContext'
 import { useCountUp } from '../hooks/useAnimations'
 import { ielts } from '../data/mock'
 import { tint as getTint } from '../data/tints'
@@ -11,6 +13,8 @@ import { tint as getTint } from '../data/tints'
 const bandPct = (band) => (band / 9) * 100
 
 export default function Ielts() {
+  const navigate = useNavigate()
+  const { showToast } = useApp()
   const band = useCountUp(ielts.estimatedBand, { duration: 1000, decimals: 1 })
 
   return (
@@ -127,12 +131,18 @@ export default function Ielts() {
             const done = p.status === 'done'
             const current = p.status === 'current'
             return (
-              <div
+              <button
                 key={p.id}
-                className={`relative flex items-center gap-3 rounded-3xl border p-3.5 transition duration-300 animate-slide-up ${
+                type="button"
+                onClick={() =>
+                  locked
+                    ? showToast('Finish Part 2 to unlock this section', { variant: 'default' })
+                    : navigate('/ielts/speaking')
+                }
+                className={`press focus-ring relative flex w-full items-center gap-3 rounded-3xl border p-3.5 text-left transition duration-300 animate-slide-up ${
                   current
                     ? 'border-indigo-200 bg-gradient-to-r from-indigo-50/80 to-white shadow-card'
-                    : 'border-ink-100 bg-white shadow-soft'
+                    : 'border-ink-100 bg-white shadow-soft hover:border-ink-200'
                 }`}
                 style={{ animationDelay: `${i * 70}ms` }}
               >
@@ -168,7 +178,7 @@ export default function Ielts() {
                 </div>
 
                 <ChevronRight size={17} className="shrink-0 text-ink-300" strokeWidth={2.4} />
-              </div>
+              </button>
             )
           })}
         </div>

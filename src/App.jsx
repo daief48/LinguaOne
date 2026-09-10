@@ -25,6 +25,12 @@ import Progress from './screens/Progress'
 import Premium from './screens/Premium'
 import Profile from './screens/Profile'
 import Settings from './screens/Settings'
+import Login from './screens/Login'
+import Notifications from './screens/Notifications'
+import Achievements from './screens/Achievements'
+import Help from './screens/Help'
+import Account from './screens/Account'
+import LessonStudy from './screens/LessonStudy'
 
 export default function App() {
   return (
@@ -50,6 +56,12 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
 
             {/* Feature screens */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/settings/account" element={<Account />} />
+            <Route path="/lesson/:lessonId/study" element={<LessonStudy />} />
             <Route path="/lesson/:lessonId" element={<LessonDetail />} />
             <Route path="/conversation" element={<Conversation />} />
             <Route path="/grammar" element={<GrammarCorrection />} />
