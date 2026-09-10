@@ -8,8 +8,10 @@ import {
   Clock,
   Crown,
   Mic,
+  Moon,
   Play,
   Sparkles,
+  Sun,
 } from 'lucide-react'
 import { Screen } from '../components/layout/Screen'
 import { Reveal } from '../components/layout/Reveal'
@@ -46,7 +48,7 @@ const greeting = () => {
 
 export default function Home() {
   const navigate = useNavigate()
-  const { languageId, setLanguageId, dailyGoal, minutesToday, savedWords, toggleSavedWord, showToast, isPremium } =
+  const { languageId, setLanguageId, dailyGoal, minutesToday, savedWords, toggleSavedWord, showToast, isPremium, isDark, toggleDark } =
     useApp()
   const [sheetOpen, setSheetOpen] = useState(false)
   const [freeSeconds, setFreeSeconds] = useState(272) // 4:32 of free AI practice left
@@ -68,14 +70,25 @@ export default function Home() {
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
+            {/* Dark mode toggle */}
+            <button
+              type="button"
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              onClick={toggleDark}
+              className="press focus-ring relative grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-white text-ink-500 shadow-soft transition-colors duration-300 hover:text-ink-900 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:text-white"
+            >
+              {isDark
+                ? <Sun size={17} strokeWidth={2.3} className="text-amber-400" />
+                : <Moon size={17} strokeWidth={2.3} />}
+            </button>
             <button
               type="button"
               aria-label="Notifications"
               onClick={() => navigate('/notifications')}
-              className="press focus-ring relative grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-white text-ink-500 shadow-soft hover:text-ink-900"
+              className="press focus-ring relative grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-white text-ink-500 shadow-soft hover:text-ink-900 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:text-white"
             >
               <Bell size={17} strokeWidth={2.3} />
-              <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 ring-2 ring-white" />
+              <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 ring-2 ring-white dark:ring-[#181A27]" />
             </button>
             <Link
               to="/profile"

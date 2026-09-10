@@ -39,7 +39,7 @@ export function TopBar({
       className={`sticky top-0 z-30 flex items-center gap-3 px-4 py-3 ${
         dark
           ? 'bg-transparent'
-          : `bg-white/85 backdrop-blur-xl ${border ? 'border-b border-ink-100' : ''}`
+          : `bg-white/85 backdrop-blur-xl dark:bg-[#0E0F17]/85 dark:border-white/10 ${border ? 'border-b border-ink-100' : ''}`
       } ${className}`}
     >
       <button
@@ -49,7 +49,7 @@ export function TopBar({
         className={`press focus-ring grid h-10 w-10 shrink-0 place-items-center rounded-full transition ${
           dark
             ? 'border border-white/25 bg-white/15 text-white backdrop-blur hover:bg-white/25'
-            : 'border border-ink-200 bg-white text-ink-600 shadow-soft hover:text-ink-900'
+            : 'border border-ink-200 bg-white text-ink-600 shadow-soft hover:text-ink-900 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:text-white'
         }`}
       >
         <ChevronLeft size={19} strokeWidth={2.5} />
@@ -59,14 +59,14 @@ export function TopBar({
         {title && (
           <h1
             className={`truncate font-display text-[16px] font-extrabold leading-tight ${
-              dark ? 'text-white' : 'text-ink-900'
+              dark ? 'text-white' : 'text-ink-900 dark:text-white'
             }`}
           >
             {title}
           </h1>
         )}
         {subtitle && (
-          <p className={`truncate text-[12px] font-medium ${dark ? 'text-white/70' : 'text-ink-400'}`}>
+          <p className={`truncate text-[12px] font-medium ${dark ? 'text-white/70' : 'text-ink-400 dark:text-ink-400'}`}>
             {subtitle}
           </p>
         )}

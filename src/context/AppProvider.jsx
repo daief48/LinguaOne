@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AppContext } from './appContext'
 import { user as mockUser } from '../data/mock'
 
@@ -15,7 +15,30 @@ export function AppProvider({ children }) {
   const [xp, setXp] = useState(mockUser.xp)
   const [minutesToday, setMinutesToday] = useState(mockUser.minutesToday)
   const [toasts, setToasts] = useState([])
+  const [isDark, setIsDark] = useState(() => {
+    try { return localStorage.getItem('lingua-theme') === 'dark' } catch { return false }
+  })
   const toastId = useRef(0)
+
+  /* Sync dark class to html, body, and screen roots */
+  useEffect(() => {
+    const root = document.getElementById('lingua-screen-root')
+    const overlayRoot = document.getElementById('app-overlay-root')
+    if (isDark) {
+      document.documentElement.classList.add('dark')
+      document.body.classList.add('dark')
+      root?.classList.add('dark')
+      overlayRoot?.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      document.body.classList.remove('dark')
+      root?.classList.remove('dark')
+      overlayRoot?.classList.remove('dark')
+    }
+    try { localStorage.setItem('lingua-theme', isDark ? 'dark' : 'light') } catch { /* noop */ }
+  }, [isDark])
+
+  const toggleDark = useCallback(() => setIsDark((v) => !v), [])
 
   const showToast = useCallback((message, options = {}) => {
     const id = ++toastId.current
@@ -56,7 +79,7 @@ export function AppProvider({ children }) {
         }
         return next
       })
-      showToast(added ? `“${word}” saved to your list` : `“${word}” removed`, {
+      showToast(added ? `"${word}" saved to your list` : `"${word}" removed`, {
         variant: added ? 'success' : 'default',
       })
     },
@@ -87,6 +110,8 @@ export function AppProvider({ children }) {
       toasts,
       showToast,
       dismissToast,
+      isDark,
+      toggleDark,
     }),
     [
       languageId,
@@ -102,6 +127,8 @@ export function AppProvider({ children }) {
       toasts,
       showToast,
       dismissToast,
+      isDark,
+      toggleDark,
     ],
   )
 

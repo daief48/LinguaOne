@@ -22,21 +22,21 @@ const DARK_BOTTOM = ['/']
 function Backdrop() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden grain" aria-hidden="true">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#F1EDFF] via-[#F7F9FC] to-[#E7F5FF]" />
-      <div className="absolute -left-32 -top-32 h-[440px] w-[440px] animate-drift rounded-full bg-violet-400/35 blur-[120px]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#F1EDFF] via-[#F7F9FC] to-[#E7F5FF] transition-colors duration-500 dark:from-[#0B0C14] dark:via-[#0E0F18] dark:to-[#141525]" />
+      <div className="absolute -left-32 -top-32 h-[440px] w-[440px] animate-drift rounded-full bg-violet-400/35 blur-[120px] dark:bg-violet-600/20" />
       <div
-        className="absolute -right-28 top-1/4 h-[400px] w-[400px] animate-drift-slow rounded-full bg-cyan-400/30 blur-[120px]"
+        className="absolute -right-28 top-1/4 h-[400px] w-[400px] animate-drift-slow rounded-full bg-cyan-400/30 blur-[120px] dark:bg-cyan-600/15"
         style={{ animationDelay: '-6s' }}
       />
       <div
-        className="absolute bottom-[-160px] left-1/3 h-[420px] w-[420px] animate-drift rounded-full bg-pink-400/25 blur-[130px]"
+        className="absolute bottom-[-160px] left-1/3 h-[420px] w-[420px] animate-drift rounded-full bg-pink-400/25 blur-[130px] dark:bg-pink-600/15"
         style={{ animationDelay: '-12s' }}
       />
       <div
-        className="absolute right-1/4 top-[-120px] h-[300px] w-[300px] animate-drift-slow rounded-full bg-amber-300/20 blur-[110px]"
+        className="absolute right-1/4 top-[-120px] h-[300px] w-[300px] animate-drift-slow rounded-full bg-amber-300/20 blur-[110px] dark:bg-amber-600/10"
         style={{ animationDelay: '-3s' }}
       />
-      <div className="absolute inset-0 grid-dots opacity-[0.45]" />
+      <div className="absolute inset-0 grid-dots opacity-[0.45] dark:opacity-[0.18]" />
     </div>
   )
 }
@@ -52,12 +52,12 @@ function DesktopAside() {
             <span className="absolute inset-0 animate-glow-pulse rounded-2xl bg-gradient-to-br from-violet-400 to-cyan-400 blur-lg" />
           </span>
           <div>
-            <div className="font-display text-[17px] font-extrabold leading-none text-ink-900">{BRAND.name}</div>
-            <div className="mt-1.5 text-[11.5px] font-semibold text-ink-400">{BRAND.descriptor}</div>
+            <div className="font-display text-[17px] font-extrabold leading-none text-ink-900 dark:text-white">{BRAND.name}</div>
+            <div className="mt-1.5 text-[11.5px] font-semibold text-ink-400 dark:text-ink-400">{BRAND.descriptor}</div>
           </div>
         </div>
 
-        <p className="mt-6 font-display text-[19px] font-extrabold leading-snug tracking-[-0.02em] text-ink-800">
+        <p className="mt-6 font-display text-[19px] font-extrabold leading-snug tracking-[-0.02em] text-ink-800 dark:text-white">
           <span className="gradient-text">Learn. Speak. Improve.</span>
           <br />
           Every Day.
@@ -71,7 +71,7 @@ function DesktopAside() {
               style={{ animationDelay: `${160 + i * 90}ms` }}
             >
               <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-violet-500 to-cyan-400" />
-              <span className="text-[12.5px] font-medium text-ink-500">{f}</span>
+              <span className="text-[12.5px] font-medium text-ink-500 dark:text-ink-300">{f}</span>
             </div>
           ))}
         </div>

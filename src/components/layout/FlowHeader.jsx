@@ -12,7 +12,7 @@ export function FlowHeader({ step, total = 4, title, subtitle, backTo, onBack, r
           type="button"
           onClick={() => (onBack ? onBack() : backTo ? navigate(backTo) : navigate(-1))}
           aria-label="Go back"
-          className="press focus-ring grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-200 bg-white text-ink-600 shadow-soft hover:text-ink-900"
+          className="press focus-ring grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-200 bg-white text-ink-600 shadow-soft hover:text-ink-900 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:text-white"
         >
           <ChevronLeft size={19} strokeWidth={2.5} />
         </button>
@@ -20,7 +20,7 @@ export function FlowHeader({ step, total = 4, title, subtitle, backTo, onBack, r
           <StepProgress total={total} current={step - 1} className="flex-1" />
         )}
         {right || (
-          <span className="shrink-0 text-[12px] font-bold tabular-nums text-ink-400">
+          <span className="shrink-0 text-[12px] font-bold tabular-nums text-ink-400 dark:text-ink-400">
             {step}/{total}
           </span>
         )}
@@ -29,7 +29,7 @@ export function FlowHeader({ step, total = 4, title, subtitle, backTo, onBack, r
       {title && (
         <div className="mt-6">
           <h1 className="title-xl text-balance">{title}</h1>
-          {subtitle && <p className="mt-2 text-[14px] leading-relaxed text-ink-500">{subtitle}</p>}
+          {subtitle && <p className="mt-2 text-[14px] leading-relaxed text-ink-500 dark:text-ink-400">{subtitle}</p>}
         </div>
       )}
     </div>

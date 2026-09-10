@@ -18,7 +18,7 @@ function Toggle({ checked, onChange, label }) {
       aria-label={label}
       onClick={onChange}
       className={`press focus-ring relative h-[28px] w-[48px] shrink-0 rounded-full transition-colors duration-300 ${
-        checked ? 'bg-gradient-to-r from-violet-600 to-indigo-600' : 'bg-ink-200'
+        checked ? 'bg-gradient-to-r from-violet-600 to-indigo-600' : 'bg-ink-200 dark:bg-white/20'
       }`}
     >
       <span
@@ -32,7 +32,7 @@ function Toggle({ checked, onChange, label }) {
 
 export default function Settings() {
   const navigate = useNavigate()
-  const { isPremium, showToast, dailyGoal, setDailyGoal } = useApp()
+  const { isPremium, showToast, dailyGoal, setDailyGoal, isDark, toggleDark } = useApp()
 
   const [toggles, setToggles] = useState(() => {
     const initial = {}
@@ -154,7 +154,8 @@ export default function Settings() {
                 const t = getTint(item.tint)
                 const key = `${group.id}.${item.id}`
                 const isToggle = item.type === 'toggle'
-                const value = valueFor(item)
+                const isDarkToggle = item.type === 'dark_toggle'
+                const value = isDarkToggle ? (isDark ? 'On' : 'Off') : valueFor(item)
 
                 const inner = (
                   <>
@@ -164,20 +165,22 @@ export default function Settings() {
 
                     <span className="min-w-0 flex-1">
                       <span className="block text-[13.5px] font-bold text-ink-900">{item.label}</span>
-                      {!isToggle && value && (
+                      {!isToggle && !isDarkToggle && value && (
                         <span className="mt-0.5 block truncate text-[11.5px] text-ink-400">{value}</span>
                       )}
                     </span>
 
-                    {isToggle ? (
+                    {isDarkToggle ? (
+                      <Toggle checked={isDark} onChange={toggleDark} label={item.label} />
+                    ) : isToggle ? (
                       <Toggle checked={toggles[key]} onChange={() => flip(key, item.label)} label={item.label} />
                     ) : (
-                      <ChevronRight size={16} className="shrink-0 text-ink-300" strokeWidth={2.4} />
+                      <ChevronRight size={16} className="shrink-0 text-ink-300 dark:text-ink-400" strokeWidth={2.4} />
                     )}
                   </>
                 )
 
-                if (isToggle) {
+                if (isToggle || isDarkToggle) {
                   return (
                     <div key={item.id} className="flex w-full items-center gap-3 p-3.5 text-left">
                       {inner}

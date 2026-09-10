@@ -7,6 +7,10 @@
     color-scheme: light;
   }
 
+  .dark {
+    color-scheme: dark;
+  }
+
   * {
     -webkit-tap-highlight-color: transparent;
   }
@@ -308,3 +312,207 @@
     transform: none;
   }
 }
+
+/* =====================================================================
+   Dark Mode overrides
+   Applied whenever `.dark` is set on <html> / document.documentElement.
+   ===================================================================== */
+
+.dark body {
+  background-color: #0E0F17 !important;
+  color: #F0F1F8 !important;
+}
+
+/* Surfaces */
+.dark .surface {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: #181A27 !important;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.5) !important;
+}
+.dark .surface-flat {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background-color: #181A27 !important;
+}
+.dark .glass {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Common white card backgrounds used inline */
+.dark .bg-white {
+  background-color: #181A27 !important;
+}
+.dark .bg-white\/70,
+.dark .bg-white\/80,
+.dark .bg-white\/85,
+.dark .bg-white\/90,
+.dark .bg-white\/95 {
+  background-color: rgba(24, 26, 39, 0.88) !important;
+}
+
+/* Bottom fade-out gradients */
+.dark .from-white {
+  --tw-gradient-from: #0E0F17 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(14 15 23 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .via-white\/95 {
+  --tw-gradient-to: rgb(14 15 23 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(14, 15, 23, 0.95) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+.dark .via-white\/85 {
+  --tw-gradient-to: rgb(14 15 23 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(14, 15, 23, 0.85) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+/* Borders */
+.dark .border-ink-100 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.dark .border-ink-200 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+.dark .border-white\/70 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Text colors */
+.dark .text-ink-900,
+.dark .title-xl,
+.dark .title-lg,
+.dark .title-md {
+  color: #F0F1F8 !important;
+}
+.dark .text-ink-800 {
+  color: #DCDEE8 !important;
+}
+.dark .text-ink-700 {
+  color: #B8BCCC !important;
+}
+.dark .text-ink-600 {
+  color: #9CA3B8 !important;
+}
+.dark .text-ink-500,
+.dark .body-muted,
+.dark .eyebrow {
+  color: #787E96 !important;
+}
+.dark .text-ink-400 {
+  color: #555D74 !important;
+}
+.dark .text-ink-300 {
+  color: #3C4358 !important;
+}
+
+/* Muted backgrounds */
+.dark .bg-ink-50 {
+  background-color: #13141F !important;
+}
+.dark .bg-ink-100 {
+  background-color: #1C1E2E !important;
+}
+.dark .hover\:bg-ink-50:hover {
+  background-color: #1C1E2E !important;
+}
+.dark .hover\:bg-ink-100:hover {
+  background-color: #24263A !important;
+}
+
+/* Tint soft colors in dark mode */
+.dark .bg-violet-50, .dark .bg-purple-50 {
+  background-color: rgba(139, 92, 246, 0.15) !important;
+}
+.dark .bg-indigo-50 {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+}
+.dark .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+}
+.dark .bg-cyan-50 {
+  background-color: rgba(6, 182, 212, 0.15) !important;
+}
+.dark .bg-pink-50 {
+  background-color: rgba(236, 72, 153, 0.15) !important;
+}
+.dark .bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+}
+.dark .bg-orange-50 {
+  background-color: rgba(249, 115, 22, 0.15) !important;
+}
+.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+}
+.dark .bg-emerald-50, .dark .bg-green-50 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+/* Tint soft borders in dark mode */
+.dark .border-violet-100, .dark .border-indigo-100, .dark .border-blue-100,
+.dark .border-cyan-100, .dark .border-pink-100, .dark .border-rose-100,
+.dark .border-orange-100, .dark .border-amber-100, .dark .border-emerald-100,
+.dark .border-green-100, .dark .border-violet-200, .dark .border-indigo-200 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* BottomNav */
+.dark nav .bg-white\/80 {
+  background-color: rgba(20, 21, 32, 0.92) !important;
+}
+.dark nav .border-white\/70 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.dark nav .bg-gradient-to-t {
+  background: linear-gradient(to top, #0E0F17 0%, rgba(14,15,23,0.85) 60%, transparent 100%) !important;
+}
+.dark nav .text-ink-400 {
+  color: #555D74 !important;
+}
+
+/* Inputs and interactive elements */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #141624 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #F0F1F8 !important;
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #555D74 !important;
+}
+
+/* Skeleton shimmer */
+.dark .skeleton {
+  background-color: #1C1E2E;
+  background-image: linear-gradient(90deg, #1C1E2E 0px, #242638 120px, #1C1E2E 240px);
+}
+
+/* Grid dots */
+.dark .grid-dots {
+  background-image: radial-gradient(rgba(139, 92, 246, 0.22) 1px, transparent 1px);
+}
+
+/* Focus ring offset dark */
+.dark .focus-ring {
+  @apply focus-visible:ring-offset-[#181A27];
+}
+
+/* Scrollbars */
+.dark .scroll-area::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Gradient text */
+.dark .gradient-text {
+  @apply bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent;
+}
+
+/* Reveal animations */
+.dark .reveal {
+  opacity: 0;
+}
+.dark .reveal-in {
+  opacity: 1;
+}
+

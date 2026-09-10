@@ -834,6 +834,13 @@ export const settingsGroups = [
     ],
   },
   {
+    id: 'appearance',
+    title: 'Appearance',
+    items: [
+      { id: 'darkmode', label: 'Dark Mode', type: 'dark_toggle', value: false, icon: 'Moon', tint: 'indigo' },
+    ],
+  },
+  {
     id: 'privacy',
     title: 'Privacy',
     items: [

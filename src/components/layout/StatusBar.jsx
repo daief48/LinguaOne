@@ -7,7 +7,7 @@ export function StatusBar({ dark = false, className = '' }) {
   return (
     <div
       className={`z-20 hidden h-[42px] shrink-0 items-center justify-between px-6 text-[13px] font-semibold sm:flex ${
-        dark ? 'text-white' : 'text-ink-900'
+        dark ? 'text-white' : 'text-ink-900 dark:text-white'
       } ${className}`}
       aria-hidden="true"
     >

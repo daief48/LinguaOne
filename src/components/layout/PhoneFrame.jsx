@@ -80,8 +80,9 @@ export function PhoneFrame({ children, darkIndicator = false, screenProps = {} }
   if (!framed) {
     return (
       <div
+        id="app-overlay-root"
         {...screenProps}
-        className={`relative z-10 flex h-[100dvh] w-full flex-col overflow-hidden bg-white ${
+        className={`relative z-10 flex h-[100dvh] w-full flex-col overflow-hidden bg-white dark:bg-[#0E0F17] ${
           screenProps.className || ''
         }`}
       >
@@ -117,8 +118,9 @@ export function PhoneFrame({ children, darkIndicator = false, screenProps = {} }
 
           {/* screen */}
           <div
+            id="app-overlay-root"
             {...screenProps}
-            className={`relative flex flex-col overflow-hidden rounded-[44px] bg-white ring-[3px] ring-[#080a0e] ${
+            className={`relative flex flex-col overflow-hidden rounded-[44px] bg-white ring-[3px] ring-[#080a0e] dark:bg-[#0E0F17] ${
               screenProps.className || ''
             }`}
             style={{ width: SCREEN_W, height: SCREEN_H, margin: BEZEL }}
