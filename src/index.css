@@ -318,62 +318,77 @@
    Applied whenever `.dark` is set on <html> / document.documentElement.
    ===================================================================== */
 
+/* Midnight Violet — a deep, brand-tinted dark scale.
+   bg #0B0912 · raised #171322 · hover #201B2E · input #120F1C */
 .dark body {
-  background-color: #0E0F17 !important;
-  color: #F0F1F8 !important;
+  background-color: #0B0912 !important;
+  color: #F2EFF9 !important;
 }
 
 /* Surfaces */
 .dark .surface {
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  background-color: #181A27 !important;
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.5) !important;
+  border-color: rgba(167, 139, 250, 0.12) !important;
+  background-color: #171322 !important;
+  box-shadow: 0 6px 24px -6px rgba(0, 0, 0, 0.55) !important;
 }
 .dark .surface-flat {
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  background-color: #181A27 !important;
+  border-color: rgba(167, 139, 250, 0.1) !important;
+  background-color: #171322 !important;
 }
 .dark .glass {
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(196, 181, 253, 0.14) !important;
+  background-color: rgba(23, 19, 34, 0.6) !important;
 }
 
 /* Common white card backgrounds used inline */
 .dark .bg-white {
-  background-color: #181A27 !important;
+  background-color: #171322 !important;
 }
 .dark .bg-white\/70,
 .dark .bg-white\/80,
 .dark .bg-white\/85,
 .dark .bg-white\/90,
 .dark .bg-white\/95 {
-  background-color: rgba(24, 26, 39, 0.88) !important;
+  background-color: rgba(23, 19, 34, 0.9) !important;
 }
 
 /* Bottom fade-out gradients */
 .dark .from-white {
-  --tw-gradient-from: #0E0F17 var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgb(14 15 23 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-from: #0B0912 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(11 9 18 / 0) var(--tw-gradient-to-position) !important;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
 .dark .via-white\/95 {
-  --tw-gradient-to: rgb(14 15 23 / 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), rgba(14, 15, 23, 0.95) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  --tw-gradient-to: rgb(11 9 18 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(11, 9, 18, 0.95) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
 }
 .dark .via-white\/85 {
-  --tw-gradient-to: rgb(14 15 23 / 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), rgba(14, 15, 23, 0.85) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  --tw-gradient-to: rgb(11 9 18 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(11, 9, 18, 0.85) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+/* `via-white` midstop on soft tint cards (AI insight / hero cards) */
+.dark .via-white {
+  --tw-gradient-to: rgb(23 19 34 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #171322 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+/* Opacity-suffixed tint stops */
+.dark .from-violet-50\/80 {
+  --tw-gradient-from: rgba(139, 92, 246, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-cyan-50\/60,
+.dark .to-cyan-50\/70 {
+  --tw-gradient-to: rgba(6, 182, 212, 0.14) var(--tw-gradient-to-position) !important;
 }
 
 /* Borders */
 .dark .border-ink-100 {
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(167, 139, 250, 0.1) !important;
 }
 .dark .border-ink-200 {
-  border-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(167, 139, 250, 0.16) !important;
 }
 .dark .border-white\/70 {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(196, 181, 253, 0.12) !important;
 }
 
 /* Text colors */
@@ -381,41 +396,93 @@
 .dark .title-xl,
 .dark .title-lg,
 .dark .title-md {
-  color: #F0F1F8 !important;
+  color: #F5F2FC !important;
 }
 .dark .text-ink-800 {
-  color: #DCDEE8 !important;
+  color: #E2DCEE !important;
 }
 .dark .text-ink-700 {
-  color: #B8BCCC !important;
+  color: #C7C0DC !important;
 }
 .dark .text-ink-600 {
-  color: #9CA3B8 !important;
+  color: #ABA3C6 !important;
 }
 .dark .text-ink-500,
 .dark .body-muted,
 .dark .eyebrow {
-  color: #787E96 !important;
+  color: #948CB2 !important;
 }
 .dark .text-ink-400 {
-  color: #555D74 !important;
+  color: #6F6790 !important;
 }
 .dark .text-ink-300 {
-  color: #3C4358 !important;
+  color: #7A7398 !important;
 }
 
 /* Muted backgrounds */
 .dark .bg-ink-50 {
-  background-color: #13141F !important;
+  background-color: #100D1A !important;
 }
 .dark .bg-ink-100 {
-  background-color: #1C1E2E !important;
+  background-color: #1B1728 !important;
 }
 .dark .hover\:bg-ink-50:hover {
-  background-color: #1C1E2E !important;
+  background-color: #241F34 !important;
 }
 .dark .hover\:bg-ink-100:hover {
-  background-color: #24263A !important;
+  background-color: #241F34 !important;
+}
+
+/* Opacity-suffixed muted surfaces (locked cards, row hovers, ghost buttons) */
+.dark .bg-ink-50\/60,
+.dark .bg-ink-50\/70,
+.dark .bg-ink-50\/80 {
+  background-color: rgba(27, 23, 40, 0.6) !important;
+}
+.dark .hover\:bg-ink-50\/60:hover,
+.dark .hover\:bg-ink-50\/70:hover {
+  background-color: rgba(36, 31, 52, 0.85) !important;
+}
+.dark .hover\:bg-ink-100\/70:hover {
+  background-color: rgba(36, 31, 52, 0.85) !important;
+}
+.dark .bg-ink-100\/50,
+.dark .bg-ink-100\/60,
+.dark .bg-ink-100\/70 {
+  background-color: rgba(27, 23, 40, 0.7) !important;
+}
+.dark .bg-white\/25,
+.dark .bg-white\/30 {
+  background-color: rgba(196, 181, 253, 0.16) !important;
+}
+
+/* Solid white borders on glassy inner panels (waveform strips etc.) */
+.dark .border-white {
+  border-color: rgba(196, 181, 253, 0.14) !important;
+}
+
+/* Divider rows (settings groups) */
+.dark .divide-ink-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(167, 139, 250, 0.1) !important;
+}
+
+/* Decorative violet blob on tint cards */
+.dark .bg-violet-200\/50 {
+  background-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+/* 500-shade tinted text */
+.dark .text-violet-500 {
+  color: #C4B5FD !important;
+}
+.dark .text-indigo-500 {
+  color: #A5B4FC !important;
+}
+.dark .text-cyan-500 {
+  color: #67E8F9 !important;
+}
+.dark .text-emerald-500 {
+  color: #6EE7B7 !important;
 }
 
 /* Tint soft colors in dark mode */
@@ -446,56 +513,184 @@
 .dark .bg-emerald-50, .dark .bg-green-50 {
   background-color: rgba(16, 185, 129, 0.15) !important;
 }
+.dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+}
+.dark .bg-teal-50 {
+  background-color: rgba(20, 184, 166, 0.15) !important;
+}
+
+/* Soft gradient stops (gradSoft tints) — dimmed, tinted-on-dark versions */
+.dark .from-violet-50, .dark .from-purple-50 {
+  --tw-gradient-from: rgba(139, 92, 246, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-violet-50, .dark .to-purple-50 {
+  --tw-gradient-to: rgba(139, 92, 246, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-indigo-50 {
+  --tw-gradient-from: rgba(99, 102, 241, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-indigo-50 {
+  --tw-gradient-to: rgba(99, 102, 241, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-blue-50 {
+  --tw-gradient-from: rgba(59, 130, 246, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-blue-50 {
+  --tw-gradient-to: rgba(59, 130, 246, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-cyan-50 {
+  --tw-gradient-from: rgba(6, 182, 212, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-cyan-50 {
+  --tw-gradient-to: rgba(6, 182, 212, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-pink-50 {
+  --tw-gradient-from: rgba(236, 72, 153, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-pink-50 {
+  --tw-gradient-to: rgba(236, 72, 153, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-rose-50 {
+  --tw-gradient-from: rgba(244, 63, 94, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-rose-50 {
+  --tw-gradient-to: rgba(244, 63, 94, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-orange-50 {
+  --tw-gradient-from: rgba(249, 115, 22, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-orange-50 {
+  --tw-gradient-to: rgba(249, 115, 22, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-amber-50 {
+  --tw-gradient-from: rgba(245, 158, 11, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-amber-50 {
+  --tw-gradient-to: rgba(245, 158, 11, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-emerald-50 {
+  --tw-gradient-from: rgba(16, 185, 129, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-emerald-50, .dark .to-teal-50 {
+  --tw-gradient-to: rgba(16, 185, 129, 0.18) var(--tw-gradient-to-position) !important;
+}
+.dark .from-teal-50 {
+  --tw-gradient-from: rgba(20, 184, 166, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .from-red-50 {
+  --tw-gradient-from: rgba(239, 68, 68, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .to-red-50 {
+  --tw-gradient-to: rgba(239, 68, 68, 0.18) var(--tw-gradient-to-position) !important;
+}
 
 /* Tint soft borders in dark mode */
 .dark .border-violet-100, .dark .border-indigo-100, .dark .border-blue-100,
 .dark .border-cyan-100, .dark .border-pink-100, .dark .border-rose-100,
 .dark .border-orange-100, .dark .border-amber-100, .dark .border-emerald-100,
 .dark .border-green-100, .dark .border-violet-200, .dark .border-indigo-200 {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(167, 139, 250, 0.14) !important;
+}
+
+/* Tinted text — lift 600/700 shades so they stay readable on dark surfaces */
+.dark .text-violet-600, .dark .text-violet-700 {
+  color: #C4B5FD !important;
+}
+.dark .text-purple-600, .dark .text-purple-700 {
+  color: #D8B4FE !important;
+}
+.dark .text-indigo-600, .dark .text-indigo-700 {
+  color: #A5B4FC !important;
+}
+.dark .text-blue-600, .dark .text-blue-700 {
+  color: #93C5FD !important;
+}
+.dark .text-cyan-600, .dark .text-cyan-700 {
+  color: #67E8F9 !important;
+}
+.dark .text-pink-600, .dark .text-pink-700 {
+  color: #F9A8D4 !important;
+}
+.dark .text-rose-600, .dark .text-rose-700 {
+  color: #FDA4AF !important;
+}
+.dark .text-orange-600, .dark .text-orange-700 {
+  color: #FDBA74 !important;
+}
+.dark .text-amber-600, .dark .text-amber-700 {
+  color: #FCD34D !important;
+}
+.dark .text-emerald-600, .dark .text-green-600, .dark .text-green-700 {
+  color: #6EE7B7 !important;
+}
+.dark .text-red-600, .dark .text-red-700 {
+  color: #FCA5A5 !important;
+}
+.dark .text-teal-600, .dark .text-teal-700 {
+  color: #5EEAD4 !important;
 }
 
 /* BottomNav */
 .dark nav .bg-white\/80 {
-  background-color: rgba(20, 21, 32, 0.92) !important;
+  background-color: rgba(16, 13, 26, 0.92) !important;
 }
 .dark nav .border-white\/70 {
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(196, 181, 253, 0.12) !important;
 }
 .dark nav .bg-gradient-to-t {
-  background: linear-gradient(to top, #0E0F17 0%, rgba(14,15,23,0.85) 60%, transparent 100%) !important;
+  background: linear-gradient(to top, #0B0912 0%, rgba(11, 9, 18, 0.85) 60%, transparent 100%) !important;
 }
 .dark nav .text-ink-400 {
-  color: #555D74 !important;
+  color: #6F6790 !important;
 }
 
 /* Inputs and interactive elements */
 .dark input,
 .dark textarea,
 .dark select {
-  background-color: #141624 !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  color: #F0F1F8 !important;
+  background-color: #120F1C !important;
+  border-color: rgba(167, 139, 250, 0.16) !important;
+  color: #F5F2FC !important;
 }
 .dark input::placeholder,
 .dark textarea::placeholder {
-  color: #555D74 !important;
+  color: #6F6790 !important;
 }
 
 /* Skeleton shimmer */
 .dark .skeleton {
-  background-color: #1C1E2E;
-  background-image: linear-gradient(90deg, #1C1E2E 0px, #242638 120px, #1C1E2E 240px);
+  background-color: #1B1728;
+  background-image: linear-gradient(90deg, #1B1728 0px, #251F36 120px, #1B1728 240px);
 }
 
 /* Grid dots */
 .dark .grid-dots {
-  background-image: radial-gradient(rgba(139, 92, 246, 0.22) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(139, 92, 246, 0.25) 1px, transparent 1px);
+}
+
+/* Hero mesh — deeper violet base so it sits naturally on dark */
+.dark .mesh-hero,
+.dark .mesh-hero-live {
+  background-color: #2E1065 !important;
+  background-image:
+    radial-gradient(at 12% 8%, rgba(139, 92, 246, 0.8) 0px, transparent 55%),
+    radial-gradient(at 88% 12%, rgba(34, 211, 238, 0.55) 0px, transparent 50%),
+    radial-gradient(at 70% 92%, rgba(236, 72, 153, 0.45) 0px, transparent 55%),
+    radial-gradient(at 15% 95%, rgba(79, 70, 229, 0.7) 0px, transparent 50%) !important;
+}
+
+/* Page mesh — brighter tint presence on dark */
+.dark .mesh-page {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.22) 0px, transparent 45%),
+    radial-gradient(at 100% 0%, rgba(34, 211, 238, 0.14) 0px, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.14) 0px, transparent 45%);
 }
 
 /* Focus ring offset dark */
 .dark .focus-ring {
-  @apply focus-visible:ring-offset-[#181A27];
+  @apply focus-visible:ring-offset-[#171322];
 }
 
 /* Scrollbars */
@@ -514,5 +709,202 @@
 }
 .dark .reveal-in {
   opacity: 1;
+}
+
+/* =====================================================================
+   Dark Mode — full-coverage component pass
+   Gradient stops, tint surfaces, borders/rings and dark text shades
+   that the base overrides above don't catch.
+   ===================================================================== */
+
+/* --- Gradient stops: `via-white to-white` tint-card pattern --- */
+.dark .to-white {
+  --tw-gradient-to: #171322 var(--tw-gradient-to-position) !important;
+}
+.dark .to-white\/0 {
+  --tw-gradient-to: rgb(23 19 34 / 0) var(--tw-gradient-to-position) !important;
+}
+
+/* Tint stops with opacity modifiers */
+.dark .from-violet-50\/60,
+.dark .from-violet-50\/70,
+.dark .from-violet-50\/90 {
+  --tw-gradient-from: rgba(139, 92, 246, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .from-indigo-50\/50,
+.dark .from-indigo-50\/80 {
+  --tw-gradient-from: rgba(99, 102, 241, 0.18) var(--tw-gradient-from-position) !important;
+}
+.dark .via-indigo-50\/60 {
+  --tw-gradient-to: rgb(99 102 241 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(99, 102, 241, 0.18) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+.dark .to-violet-50\/50,
+.dark .to-violet-50\/60 {
+  --tw-gradient-to: rgba(139, 92, 246, 0.16) var(--tw-gradient-to-position) !important;
+}
+.dark .to-cyan-50\/50 {
+  --tw-gradient-to: rgba(6, 182, 212, 0.16) var(--tw-gradient-to-position) !important;
+}
+.dark .to-orange-50\/70 {
+  --tw-gradient-to: rgba(249, 115, 22, 0.16) var(--tw-gradient-to-position) !important;
+}
+.dark .to-amber-50\/60 {
+  --tw-gradient-to: rgba(245, 158, 11, 0.16) var(--tw-gradient-to-position) !important;
+}
+
+/* Sticky bottom fade (Premium) */
+.dark .from-ink-50 {
+  --tw-gradient-from: #0B0912 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(11 9 18 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+.dark .via-ink-50\/95 {
+  --tw-gradient-to: rgb(11 9 18 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(11, 9, 18, 0.95) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+/* --- Muted ink surfaces: 200/300 steps + hovers --- */
+.dark .bg-ink-200 {
+  background-color: #241F34 !important;
+}
+.dark .hover\:bg-ink-200:hover {
+  background-color: #2E2742 !important;
+}
+.dark .bg-ink-300 {
+  background-color: #332C49 !important;
+}
+.dark .hover\:bg-ink-300:hover {
+  background-color: #3D3654 !important;
+}
+.dark .bg-ink-200\/70,
+.dark .hover\:bg-ink-200\/70:hover {
+  background-color: rgba(36, 31, 52, 0.8) !important;
+}
+
+/* --- Tint surfaces: 100/200 steps + opacity variants of 50s --- */
+.dark .bg-violet-100 {
+  background-color: rgba(139, 92, 246, 0.22) !important;
+}
+.dark .hover\:bg-violet-100:hover {
+  background-color: rgba(139, 92, 246, 0.28) !important;
+}
+.dark .bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+}
+.dark .bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+}
+.dark .bg-amber-200 {
+  background-color: rgba(245, 158, 11, 0.3) !important;
+}
+.dark .bg-rose-100 {
+  background-color: rgba(244, 63, 94, 0.22) !important;
+}
+
+.dark .bg-violet-50\/70 {
+  background-color: rgba(139, 92, 246, 0.18) !important;
+}
+.dark .bg-violet-100\/70 {
+  background-color: rgba(139, 92, 246, 0.24) !important;
+}
+.dark .bg-emerald-50\/70 {
+  background-color: rgba(16, 185, 129, 0.18) !important;
+}
+.dark .bg-emerald-50\/60 {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+}
+.dark .bg-amber-50\/70 {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+}
+.dark .bg-amber-50\/60 {
+  background-color: rgba(245, 158, 11, 0.16) !important;
+}
+.dark .bg-rose-50\/70 {
+  background-color: rgba(244, 63, 94, 0.18) !important;
+}
+.dark .bg-pink-50\/60 {
+  background-color: rgba(236, 72, 153, 0.16) !important;
+}
+.dark .bg-cyan-50\/70 {
+  background-color: rgba(6, 182, 212, 0.18) !important;
+}
+
+/* Decorative blur blobs */
+.dark .bg-violet-200\/40 {
+  background-color: rgba(139, 92, 246, 0.18) !important;
+}
+.dark .bg-cyan-200\/40,
+.dark .bg-cyan-200\/35 {
+  background-color: rgba(34, 211, 238, 0.14) !important;
+}
+.dark .bg-pink-200\/40 {
+  background-color: rgba(236, 72, 153, 0.14) !important;
+}
+
+/* --- Borders, rings, dividers --- */
+.dark .border-ink-300,
+.dark .hover\:border-ink-300:hover {
+  border-color: rgba(167, 139, 250, 0.22) !important;
+}
+.dark .border-violet-300 {
+  border-color: rgba(167, 139, 250, 0.32) !important;
+}
+.dark .border-rose-200 {
+  border-color: rgba(253, 164, 175, 0.24) !important;
+}
+.dark .border-emerald-200 {
+  border-color: rgba(110, 231, 183, 0.24) !important;
+}
+.dark .border-violet-100\/80 {
+  border-color: rgba(167, 139, 250, 0.2) !important;
+}
+.dark .ring-violet-200 {
+  --tw-ring-color: rgba(167, 139, 250, 0.26) !important;
+}
+.dark .ring-ink-100 {
+  --tw-ring-color: rgba(167, 139, 250, 0.14) !important;
+}
+.dark .ring-orange-200 {
+  --tw-ring-color: rgba(253, 186, 116, 0.26) !important;
+}
+.dark .divide-ink-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(167, 139, 250, 0.12) !important;
+}
+
+/* --- Dark text shades on tint chips (amber/emerald/rose/cyan 800–900) --- */
+.dark .text-amber-800,
+.dark .text-amber-800\/85,
+.dark .text-amber-900 {
+  color: #FCD34D !important;
+}
+.dark .text-emerald-800,
+.dark .text-emerald-800\/80,
+.dark .text-emerald-800\/85,
+.dark .text-emerald-900 {
+  color: #6EE7B7 !important;
+}
+.dark .text-rose-800 {
+  color: #FDA4AF !important;
+}
+.dark .text-cyan-900 {
+  color: #67E8F9 !important;
+}
+
+/* Vivid 500-shade text not covered above */
+.dark .text-rose-500,
+.dark .hover\:text-rose-500:hover {
+  color: #FB7185 !important;
+}
+.dark .text-orange-500 {
+  color: #FB923C !important;
+}
+.dark .text-amber-500 {
+  color: #FBBF24 !important;
+}
+
+/* Muted ink text extremes */
+.dark .text-ink-200 {
+  color: #645D82 !important;
 }
 
